@@ -1420,21 +1420,10 @@ The  **ID3D11Device::CreateRasterizerState**  method has the following signature
 
 ID3D11Device::CreateRasterizerState method
 
-1
-
-2
-
-3
-
-4
-
-`HRESULT` `CreateRasterizerState(`
-
-`[in]` `const` `D3D11_RASTERIZER_DESC *pRasterizerDesc,`
-
-`[out] ID3D11RasterizerState **ppRasterizerState`
-
-`);`
+    HRESULT CreateRasterizerState(
+      [in]   const D3D11_RASTERIZER_DESC *pRasterizerDesc,
+      [out]  ID3D11RasterizerState **ppRasterizerState
+    );
 
 Where:
 
@@ -4396,5 +4385,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTE1MzAwNjgsLTQyMjU3NDk2OV19
+eyJoaXN0b3J5IjpbMjY4MzU2NDA0XX0=
 -->
