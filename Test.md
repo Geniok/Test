@@ -446,51 +446,24 @@ These are all of the variables that we need to define for the application window
 
 main.cpp
 
-    enter code here
-        // Direct3D device and swap chain.
+    // Direct3D device and swap chain.
     ID3D11Device* g_d3dDevice = nullptr;
     ID3D11DeviceContext* g_d3dDeviceContext = nullptr;
     IDXGISwapChain* g_d3dSwapChain = nullptr;
-    dbdb
-    dbdb
-    dbdb
-    dbdb
-    dbdb
-    dbdb
-    dbdb
-    dbdb
+ 
+    // Render target view for the back buffer of the swap chain.
+    ID3D11RenderTargetView* g_d3dRenderTargetView = nullptr;
+    // Depth/stencil view for use as a depth buffer.
+    ID3D11DepthStencilView* g_d3dDepthStencilView = nullptr;
+    // A texture to associate to the depth stencil view.
+    ID3D11Texture2D* g_d3dDepthStencilBuffer = nullptr;
+ 
+    // Define the functionality of the depth/stencil stages.
+    ID3D11DepthStencilState* g_d3dDepthStencilState = nullptr;
+    // Define the functionality of the rasterizer stage.
+    ID3D11RasterizerState* g_d3dRasterizerState = nullptr;
+    D3D11_VIEWPORT g_Viewport = {0};
     
-
-`// Direct3D device and swap chain.`
-
-`ID3D11Device* g_d3dDevice = nullptr;`
-
-`ID3D11DeviceContext* g_d3dDeviceContext = nullptr;`
-
-`IDXGISwapChain* g_d3dSwapChain = nullptr;`
-
-`// Render target view for the back buffer of the swap chain.`
-
-`ID3D11RenderTargetView* g_d3dRenderTargetView = nullptr;`
-
-`// Depth/stencil view for use as a depth buffer.`
-
-`ID3D11DepthStencilView* g_d3dDepthStencilView = nullptr;`
-
-`// A texture to associate to the depth stencil view.`
-
-`ID3D11Texture2D* g_d3dDepthStencilBuffer = nullptr;`
-
-`// Define the functionality of the depth/stencil stages.`
-
-`ID3D11DepthStencilState* g_d3dDepthStencilState = nullptr;`
-
-`// Define the functionality of the rasterizer stage.`
-
-`ID3D11RasterizerState* g_d3dRasterizerState = nullptr;`
-
-`D3D11_VIEWPORT g_Viewport = {0};`
-
 The  **g_d3dDevice**,  **g_d3dDeviceContext**, and  **g_d3dSwapChain**  are the absolute minimum variables required for the most basic DirectX 11 application. A  **ID3D11Device**instance is used for allocating GPU resources such as buffers, textures, shaders, and state objects (to name a few). The  **ID3D11DeviceContext**  is used to configure the rendering pipeline and draw geometry. The  **IDXGISwapChain**  stores the buffers that are used for rendering data. This interface is also used to determine how the buffers are swapped when the rendered image should be presented to the screen.
 
 The  **g_d3dRenderTargetView**  and the  **g_d3dDepthStencilView**  variables are used to define the subresource view of the area of a buffer to which we will draw to. A resource view defines an area of a buffer that can be used for rendering. In this case we need two views, the  **g_d3dRenderTargetView**  will refer to a subresource of a color buffer while the  **g_d3dDepthStencilView**  will refer to a subresource of a depth/stencil buffer.
@@ -5592,6 +5565,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIyODc1MjU5MSw5MDExMjIxMzgsMTgxMD
-k1MDY4MF19
+eyJoaXN0b3J5IjpbLTE2MDYwMDc1MTYsOTAxMTIyMTM4LDE4MT
+A5NTA2ODBdfQ==
 -->
