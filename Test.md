@@ -535,113 +535,34 @@ Next, we’ll define the geometry for the single object that will be rendered in
 
 main.cpp
 
-55
-
-56
-
-57
-
-58
-
-59
-
-60
-
-61
-
-62
-
-63
-
-64
-
-65
-
-66
-
-67
-
-68
-
-69
-
-70
-
-71
-
-72
-
-73
-
-74
-
-75
-
-76
-
-77
-
-78
-
-79
-
-80
-
-81
-
-82
-
-`// Vertex data for a colored cube.`
-
-`struct` `VertexPosColor`
-
-`{`
-
-`XMFLOAT3 Position;`
-
-`XMFLOAT3 Color;`
-
-`};`
-
-`VertexPosColor g_Vertices[8] =`
-
-`{`
-
-`{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT3( 0.0f, 0.0f, 0.0f ) },` `// 0`
-
-`{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ) },` `// 1`
-
-`{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT3( 1.0f, 1.0f, 0.0f ) },` `// 2`
-
-`{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ) },` `// 3`
-
-`{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ) },` `// 4`
-
-`{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT3( 0.0f, 1.0f, 1.0f ) },` `// 5`
-
-`{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT3( 1.0f, 1.0f, 1.0f ) },` `// 6`
-
-`{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT3( 1.0f, 0.0f, 1.0f ) }` `// 7`
-
-`};`
-
-`WORD` `g_Indicies[36] =`
-
-`{`
-
-`0, 1, 2, 0, 2, 3,`
-
-`4, 6, 5, 4, 7, 6,`
-
-`4, 5, 1, 4, 1, 0,`
-
-`3, 2, 6, 3, 6, 7,`
-
-`1, 5, 6, 1, 6, 2,`
-
-`4, 0, 3, 4, 3, 7`
-
-`};`
+    // Vertex data for a colored cube.
+    struct VertexPosColor
+    {
+        XMFLOAT3 Position;
+        XMFLOAT3 Color;
+    };
+ 
+    VertexPosColor g_Vertices[8] = 
+    {
+        { XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT3( 0.0f, 0.0f, 0.0f ) }, // 0
+        { XMFLOAT3( -1.0f,  1.0f, -1.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ) }, // 1
+        { XMFLOAT3(  1.0f,  1.0f, -1.0f ), XMFLOAT3( 1.0f, 1.0f, 0.0f ) }, // 2
+        { XMFLOAT3(  1.0f, -1.0f, -1.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ) }, // 3
+        { XMFLOAT3( -1.0f, -1.0f,  1.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ) }, // 4
+        { XMFLOAT3( -1.0f,  1.0f,  1.0f ), XMFLOAT3( 0.0f, 1.0f, 1.0f ) }, // 5
+        { XMFLOAT3(  1.0f,  1.0f,  1.0f ), XMFLOAT3( 1.0f, 1.0f, 1.0f ) }, // 6
+        { XMFLOAT3(  1.0f, -1.0f,  1.0f ), XMFLOAT3( 1.0f, 0.0f, 1.0f ) }  // 7
+    };
+ 
+    WORD g_Indicies[36] = 
+    {
+        0, 1, 2, 0, 2, 3,
+        4, 6, 5, 4, 7, 6,
+        4, 5, 1, 4, 1, 0, 
+        3, 2, 6, 3, 6, 7,
+        1, 5, 6, 1, 6, 2, 
+        4, 0, 3, 4, 3, 7
+    };
 
 The  **VertexPosColor**  struct defines the properties of a single vertex. In this case the  **Position**  member variable will be used to store the position of the vertex in 3D space and the  **Color**  member variable will be used to store the red, green, and blue components of the vertex’s color.
 
@@ -5506,6 +5427,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzNzc2NjQ0NiwtMTYwNjAwNzUxNiw5MD
-ExMjIxMzgsMTgxMDk1MDY4MF19
+eyJoaXN0b3J5IjpbLTE2NTE5NzI4OTFdfQ==
 -->
