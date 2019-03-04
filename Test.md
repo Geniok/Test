@@ -2017,26 +2017,12 @@ The  [ID3D11Device::CreateBuffer](https://msdn.microsoft.com/en-us/library/windo
 
 ID3D11Device::CreateBuffer method
 
-1
 
-2
-
-3
-
-4
-
-5
-
-`HRESULT` `CreateBuffer(`
-
-`[in]` `const` `D3D11_BUFFER_DESC *pDesc,`
-
-`[in, optional]` `const` `D3D11_SUBRESOURCE_DATA *pInitialData,`
-
-`[out, optional] ID3D11Buffer **ppBuffer`
-
-`);`
-
+    HRESULT CreateBuffer(
+      [in]             const D3D11_BUFFER_DESC *pDesc,
+      [in, optional]   const D3D11_SUBRESOURCE_DATA *pInitialData,
+      [out, optional]  ID3D11Buffer **ppBuffer
+    );
 Where:
 
 -   **const D3D11_BUFFER_DESC *pDesc**: A pointer to a  [D3D11_BUFFER_DESC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476092(v=vs.85).aspx "D3D11_BUFFER_DESC structure")structure that describes the buffer.
@@ -2051,61 +2037,22 @@ Similar to the vertex buffer, we’ll use the  [ID3D11Device::CreateBuffer](http
 
 main.cpp
 
-414
 
-415
-
-416
-
-417
-
-418
-
-419
-
-420
-
-421
-
-422
-
-423
-
-424
-
-425
-
-426
-
-427
-
-428
-
-`// Create and initialize the index buffer.`
-
-`D3D11_BUFFER_DESC indexBufferDesc;`
-
-`ZeroMemory( &indexBufferDesc,` `sizeof``(D3D11_BUFFER_DESC) );`
-
-`indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;`
-
-`indexBufferDesc.ByteWidth =` `sizeof``(``WORD``) * _countof(g_Indicies);`
-
-`indexBufferDesc.CPUAccessFlags = 0;`
-
-`indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;`
-
-`resourceData.pSysMem = g_Indicies;`
-
-`hr = g_d3dDevice->CreateBuffer( & indexBufferDesc, &resourceData, &g_d3dIndexBuffer );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
+    // Create and initialize the index buffer.
+    D3D11_BUFFER_DESC indexBufferDesc;
+    ZeroMemory( &indexBufferDesc, sizeof(D3D11_BUFFER_DESC) );
+     
+    indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+    indexBufferDesc.ByteWidth = sizeof(WORD) * _countof(g_Indicies);
+    indexBufferDesc.CPUAccessFlags = 0;
+    indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    resourceData.pSysMem = g_Indicies;
+     
+    hr = g_d3dDevice->CreateBuffer( & indexBufferDesc, &resourceData, &g_d3dIndexBuffer );
+    if ( FAILED(hr) )
+    {
+        return false;
+    }
 
 Now we need to define the three constant buffers that will be used to store the constant uniform variables used in the vertex shader.
 
@@ -2115,97 +2062,31 @@ Creating the constant buffers is very similar to creating the vertex and index b
 
 main.cpp
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-`// Create the constant buffers for the variables defined in the vertex shader.`
-
-`D3D11_BUFFER_DESC constantBufferDesc;`
-
-`ZeroMemory( &constantBufferDesc,` `sizeof``(D3D11_BUFFER_DESC) );`
-
-`constantBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;`
-
-`constantBufferDesc.ByteWidth =` `sizeof``( XMMATRIX );`
-
-`constantBufferDesc.CPUAccessFlags = 0;`
-
-`constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;`
-
-`hr = g_d3dDevice->CreateBuffer( &constantBufferDesc, nullptr, &g_d3dConstantBuffers[CB_Application] );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`hr = g_d3dDevice->CreateBuffer( &constantBufferDesc, nullptr, &g_d3dConstantBuffers[CB_Frame] );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`hr = g_d3dDevice->CreateBuffer( &constantBufferDesc, nullptr, &g_d3dConstantBuffers[CB_Object] );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
+    // Create the constant buffers for the variables defined in the vertex shader.
+    D3D11_BUFFER_DESC constantBufferDesc;
+    ZeroMemory( &constantBufferDesc, sizeof(D3D11_BUFFER_DESC) );
+     
+    constantBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    constantBufferDesc.ByteWidth = sizeof( XMMATRIX );
+    constantBufferDesc.CPUAccessFlags = 0;
+    constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+     
+    hr = g_d3dDevice->CreateBuffer( &constantBufferDesc, nullptr, &g_d3dConstantBuffers[CB_Application] );
+    if ( FAILED(hr) )
+    {
+        return false;
+    }
+    hr = g_d3dDevice->CreateBuffer( &constantBufferDesc, nullptr, &g_d3dConstantBuffers[CB_Frame] );
+    if ( FAILED(hr) )
+    {
+        return false;
+    }
+    hr = g_d3dDevice->CreateBuffer( &constantBufferDesc, nullptr, &g_d3dConstantBuffers[CB_Object] );
+    if ( FAILED(hr) )
+    {
+        return false;
+    }
 
 In this case, we specify  **D3D11_BIND_CONSTANT_BUFFER**  for the bind flags of the constant buffers and we use  **nullptr**  for the  **D3D11_SUBRESOURCE_DATA**  parameter to just allocate memory for the buffer but not initialize that memory.
 
@@ -3620,7 +3501,7 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxNTk2NDIzMSwxNDk1OTgzMTY1LC0xMT
+eyJoaXN0b3J5IjpbLTE5MzA1MDAyNSwxNDk1OTgzMTY1LC0xMT
 Q3MzYzNzY5LC0xNTUzMDE5Mzg3LDIwNTM2ODQxODQsLTcyNTEx
 MzczOF19
 -->
