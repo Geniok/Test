@@ -1,31 +1,4 @@
-
-
-
-> Written with [StackEdit](https://stackedit.io/).
-> # [3D Game Engine Programming](https://www.3dgep.com/)
-
-## Helping you build your dream game engine
-
-[![](https://www.3dgep.com/wp-content/uploads/2015/08/ForwardvDeferred-FeaturedImage-1000x288.jpg)](https://www.3dgep.com/)Search
-
-### Main menu
-
-[Skip to primary content](https://www.3dgep.com/forward-plus/#content)
-
--   [Home](https://www.3dgep.com/)
--   [Math](https://www.3dgep.com/category/math/)
--   [Unity](https://www.3dgep.com/category/unity/)
--   [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)
--   [CUDA](https://www.3dgep.com/category/cuda/)
--   [About](https://www.3dgep.com/about-3d-game-engine-programming/)
-
-### Post navigation
-
-[←  Previous](https://www.3dgep.com/texturing-lighting-directx-11/)[Next  →](https://www.3dgep.com/volume-tiled-forward-shading/)
-
 # Forward vs Deferred vs Forward+ Rendering with DirectX 11
-
-Posted on [September 4, 2015](https://www.3dgep.com/forward-plus/ "5:31 pm") by [Jeremiah](https://www.3dgep.com/author/jeremiah/ "View all posts by Jeremiah")
 
 [![Forward+ with HLSL](https://www.3dgep.com/wp-content/uploads/2015/08/ForwardvDeferred-Screenshot-150x150.jpg)](https://www.3dgep.com/wp-content/uploads/2015/08/ForwardvDeferred-Screenshot.jpg)
 
@@ -4337,5 +4310,5 @@ The value of the light count before it is incremented is stored in the  **index*
 
 The method to compute the minimum and maximum depth range per tile is taken from the presentation titled "DirectX 11 Rendering in Battlefield 3" by Johan Andersson in 2011
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTA3NzAzNTVdfQ==
+eyJoaXN0b3J5IjpbLTEyODQxNDE5NTldfQ==
 -->
