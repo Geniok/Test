@@ -2378,49 +2378,17 @@ The  **Present**  function is called at the end of the drawing code and finalize
 
 main.cpp
 
-829
-
-830
-
-831
-
-832
-
-833
-
-834
-
-835
-
-836
-
-837
-
-838
-
-839
-
-`void Present(` `bool` `vSync )`
-
-`{`
-
-`if` `( vSync )`
-
-`{`
-
-`g_d3dSwapChain->Present( 1, 0 );`
-
-`}`
-
-`else`
-
-`{`
-
-`g_d3dSwapChain->Present( 0, 0 );`
-
-`}`
-
-`}`
+    void Present( bool vSync )
+    {
+        if ( vSync )
+        {
+            g_d3dSwapChain->Present( 1, 0 );
+        }
+        else
+        {
+            g_d3dSwapChain->Present( 0, 0 );
+        }
+    }
 
 The  [IDXGISwapChain::Present](https://msdn.microsoft.com/en-us/library/windows/desktop/bb174576(v=vs.85).aspx "IDXGISwapChain::Present method")  method is used to flip the back buffer to the front for display in the application window. The  [IDXGISwapChain::Present](https://msdn.microsoft.com/en-us/library/windows/desktop/bb174576(v=vs.85).aspx "IDXGISwapChain::Present method")  method takes two parameters  [[55]](https://www.3dgep.com/introduction-to-directx-11/#Present):
 
@@ -2449,27 +2417,12 @@ The first step of our render function (after checking our preconditions) is to c
 
 main.cpp
 
-841
-
-842
-
-843
-
-844
-
-845
-
-846
-
-`void Render()`
-
-`{`
-
-`assert``( g_d3dDevice );`
-
-`assert``( g_d3dDeviceContext );`
-
-`Clear( Colors::CornflowerBlue, 1.0f, 0 );`
+    void Render()
+    {
+        assert( g_d3dDevice );
+        assert( g_d3dDeviceContext );
+     
+        Clear( Colors::CornflowerBlue, 1.0f, 0 );
 
 On line 846, we call the  **Clear**  function to clear the contents of the back buffer and depth/stencil buffer.
 
@@ -2479,31 +2432,14 @@ The first stage of the rendering pipeline is the input assembler (**IA**).
 
 main.cpp
 
-848
 
-849
-
-850
-
-851
-
-852
-
-853
-
-854
-
-`const` `UINT` `vertexStride =` `sizeof``(VertexPosColor);`
-
-`const` `UINT` `offset = 0;`
-
-`g_d3dDeviceContext->IASetVertexBuffers( 0, 1, &g_d3dVertexBuffer, &vertexStride, &offset );`
-
-`g_d3dDeviceContext->IASetInputLayout( g_d3dInputLayout );`
-
-`g_d3dDeviceContext->IASetIndexBuffer( g_d3dIndexBuffer, DXGI_FORMAT_R16_UINT, 0 );`
-
-`g_d3dDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );`
+    const UINT vertexStride = sizeof(VertexPosColor);
+    const UINT offset = 0;
+     
+    g_d3dDeviceContext->IASetVertexBuffers( 0, 1, &g_d3dVertexBuffer, &vertexStride, &offset );
+    g_d3dDeviceContext->IASetInputLayout( g_d3dInputLayout );
+    g_d3dDeviceContext->IASetIndexBuffer( g_d3dIndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
+    g_d3dDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
 On line 851-854 we setup the various properties of the input assembler stage. On line 851, we bind the vertex buffer to to input assembler stage using the  [ID3D11DeviceContext::IASetVertexBuffers](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476456(v=vs.85).aspx "ID3D11DeviceContext::IASetVertexBuffers method")  method. This method takes the following arguments  [[56]](https://www.3dgep.com/introduction-to-directx-11/#IASetVertexBuffers):
 
@@ -2531,13 +2467,8 @@ The next stage of the rendering pipeline is the vertex shader stage (**VS**). Fo
 
 main.cpp
 
-856
-
-857
-
-`g_d3dDeviceContext->VSSetShader( g_d3dVertexShader, nullptr, 0 );`
-
-`g_d3dDeviceContext->VSSetConstantBuffers(0, 3, g_d3dConstantBuffers );`
+    g_d3dDeviceContext->VSSetShader( g_d3dVertexShader, nullptr, 0 );
+    g_d3dDeviceContext->VSSetConstantBuffers(0, 3, g_d3dConstantBuffers );
 
 The vertex shader is bound to the vertex shader stage using the  [ID3D11DeviceContext::VSSetShader](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476493(v=vs.85).aspx "ID3D11DeviceContext::VSSetShader method")  method. This method takes the following arguments  [[58]](https://www.3dgep.com/introduction-to-directx-11/#VSSetShader):
 
@@ -3161,5 +3092,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg3ODAyMDY2NiwtMTY0MzI3NTM5XX0=
+eyJoaXN0b3J5IjpbLTE1MzY1NzA3MzAsLTE2NDMyNzUzOV19
 -->
