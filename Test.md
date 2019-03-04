@@ -1454,38 +1454,14 @@ The  **g_Viewport**  global variable is of type  **D3D11_VIEWPORT**. This struct
 
 D3D11_VIEWPORT structure
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-`typedef` `struct` `D3D11_VIEWPORT {`
-
-`FLOAT` `TopLeftX;`
-
-`FLOAT` `TopLeftY;`
-
-`FLOAT` `Width;`
-
-`FLOAT` `Height;`
-
-`FLOAT` `MinDepth;`
-
-`FLOAT` `MaxDepth;`
-
-`} D3D11_VIEWPORT;`
-
+    typedef struct D3D11_VIEWPORT {
+      FLOAT TopLeftX;
+      FLOAT TopLeftY;
+      FLOAT Width;
+      FLOAT Height;
+      FLOAT MinDepth;
+      FLOAT MaxDepth;
+    } D3D11_VIEWPORT;
 Where:
 
 -   **FLOAT TopLeftX**: X position of the left hand side of the viewport.
@@ -1503,107 +1479,35 @@ At this point we can update the main function to include the function to initial
 
 main.cpp
 
-741
 
-742
-
-743
-
-744
-
-745
-
-746
-
-747
-
-748
-
-749
-
-750
-
-751
-
-752
-
-753
-
-754
-
-755
-
-756
-
-757
-
-758
-
-759
-
-760
-
-761
-
-762
-
-763
-
-764
-
-765
-
-766
-
-767
-
-768
-
-`int` `WINAPI wWinMain(` `HINSTANCE` `hInstance,` `HINSTANCE` `prevInstance,` `LPWSTR` `cmdLine,` `int` `cmdShow )`
-
-`{`
-
-`UNREFERENCED_PARAMETER( prevInstance );`
-
-`UNREFERENCED_PARAMETER( cmdLine );`
-
-`// Check for DirectX Math library support.`
-
-`if` `( !XMVerifyCPUSupport() )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to verify DirectX Math library support."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`if``( InitApplication(hInstance, cmdShow) != 0 )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to create applicaiton window."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`if` `( InitDirectX(hInstance, g_EnableVSync) != 0 )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to create DirectX device and swap chain."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`int` `returnCode = Run();`
-
-`return` `returnCode;`
-
-`}`
+    int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine, int cmdShow )
+    {
+        UNREFERENCED_PARAMETER( prevInstance );
+        UNREFERENCED_PARAMETER( cmdLine );
+     
+        // Check for DirectX Math library support.
+        if ( !XMVerifyCPUSupport() )
+        {
+            MessageBox( nullptr, TEXT("Failed to verify DirectX Math library support."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        if( InitApplication(hInstance, cmdShow) != 0 )
+        {
+            MessageBox( nullptr, TEXT("Failed to create applicaiton window."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        if ( InitDirectX(hInstance, g_EnableVSync) != 0 )
+        {
+            MessageBox( nullptr, TEXT("Failed to create DirectX device and swap chain."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        int returnCode = Run();
+     
+        return returnCode;
+    }
 
 If we run the application again, we will still only see a blank window because we still haven’t rendered anything onto the screen.
 
@@ -4359,5 +4263,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzYwMDQ2MzE2LDI2ODM1NjQwNF19
+eyJoaXN0b3J5IjpbLTcyNTExMzczOCwyNjgzNTY0MDRdfQ==
 -->
