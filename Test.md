@@ -2278,57 +2278,21 @@ One final thing we can do in the  **LoadContent**  method for this demo is setup
 
 main.cpp
 
-519
-
-520
-
-521
-
-522
-
-523
-
-524
-
-525
-
-526
-
-527
-
-528
-
-529
-
-530
-
-531
-
-532
-
-533
-
-`// Setup the projection matrix.`
-
-`RECT clientRect;`
-
-`GetClientRect( g_WindowHandle, &clientRect );`
-
-`// Compute the exact client dimensions.`
-
-`// This is required for a correct projection matrix.`
-
-`float` `clientWidth =` `static_cast``<``float``>( clientRect.right - clientRect.left );`
-
-`float` `clientHeight =` `static_cast``<``float``>( clientRect.bottom - clientRect.top );`
-
-`g_ProjectionMatrix = XMMatrixPerspectiveFovLH( XMConvertToRadians(45.0f), clientWidth/clientHeight, 0.1f, 100.0f );`
-
-`g_d3dDeviceContext->UpdateSubresource( g_d3dConstantBuffers[CB_Appliation], 0, nullptr, &g_ProjectionMatrix, 0, 0 );`
-
-`return` `true``;`
-
-`}`
+        // Setup the projection matrix.
+        RECT clientRect;
+        GetClientRect( g_WindowHandle, &clientRect );
+     
+        // Compute the exact client dimensions.
+        // This is required for a correct projection matrix.
+        float clientWidth = static_cast<float>( clientRect.right - clientRect.left );
+        float clientHeight = static_cast<float>( clientRect.bottom - clientRect.top );
+     
+        g_ProjectionMatrix = XMMatrixPerspectiveFovLH( XMConvertToRadians(45.0f), clientWidth/clientHeight, 0.1f, 100.0f );
+     
+        g_d3dDeviceContext->UpdateSubresource( g_d3dConstantBuffers[CB_Appliation], 0, nullptr, &g_ProjectionMatrix, 0, 0 );
+     
+        return true;
+    }
 
 On line 528, the projection matrix is computed from the  [XMMatrixPerspectiveFovLH](https://msdn.microsoft.com/en-us/library/microsoft.directx_sdk.matrix.xmmatrixperspectivefovlh(v=vs.85).aspx "XMMatrixPerspectiveFovLH method")function and on line 530 the contents of the projection matrix are copied into the per-appliction constant buffer using the  [ID3D11DeviceContext::UpdateSubresource](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476486(v=vs.85).aspx "ID3D11DeviceContext::UpdateSubresource method")  method.
 
@@ -2336,37 +2300,15 @@ The  [ID3D11DeviceContext::UpdateSubresource](https://msdn.microsoft.com/en-us/l
 
 ID3D11DeviceContext::UpdateSubresource method
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-`void UpdateSubresource(`
-
-`[in] ID3D11Resource *pDstResource,`
-
-`[in]` `UINT` `DstSubresource,`
-
-`[in]` `const` `D3D11_BOX *pDstBox,`
-
-`[in]` `const` `void *pSrcData,`
-
-`[in]` `UINT` `SrcRowPitch,`
-
-`[in]` `UINT` `SrcDepthPitch`
-
-`);`
+    void UpdateSubresource(
+      [in]  ID3D11Resource *pDstResource,
+      [in]  UINT DstSubresource,
+      [in]  const D3D11_BOX *pDstBox,
+      [in]  const void *pSrcData,
+      [in]  UINT SrcRowPitch,
+      [in]  UINT SrcDepthPitch
+    );
 
 Where:
 
@@ -2387,63 +2329,22 @@ First we’ll implement the update function. This function doesn’t do much exc
 
 main.cpp
 
-805
-
-806
-
-807
-
-808
-
-809
-
-810
-
-811
-
-812
-
-813
-
-814
-
-815
-
-816
-
-817
-
-818
-
-819
-
-820
-
-`void Update(` `float` `deltaTime )`
-
-`{`
-
-`XMVECTOR eyePosition = XMVectorSet( 0, 0, -10, 1 );`
-
-`XMVECTOR focusPoint = XMVectorSet( 0, 0, 0, 1 );`
-
-`XMVECTOR upDirection = XMVectorSet( 0, 1, 0, 0 );`
-
-`g_ViewMatrix = XMMatrixLookAtLH( eyePosition, focusPoint, upDirection );`
-
-`g_d3dDeviceContext->UpdateSubresource( g_d3dConstantBuffers[CB_Frame], 0, nullptr, &g_ViewMatrix, 0, 0 );`
-
-`static` `float` `angle = 0.0f;`
-
-`angle += 90.0f * deltaTime;`
-
-`XMVECTOR rotationAxis = XMVectorSet( 0, 1, 1, 0 );`
-
-`g_WorldMatrix = XMMatrixRotationAxis( rotationAxis, XMConvertToRadians(angle) );`
-
-`g_d3dDeviceContext->UpdateSubresource( g_d3dConstantBuffers[CB_Object], 0, nullptr, &g_WorldMatrix, 0, 0 );`
-
-`}`
+    void Update(  float deltaTime )
+    {
+        XMVECTOR eyePosition = XMVectorSet( 0, 0, -10, 1 );
+        XMVECTOR focusPoint = XMVectorSet( 0, 0, 0, 1 );
+        XMVECTOR upDirection = XMVectorSet( 0, 1, 0, 0 );
+        g_ViewMatrix = XMMatrixLookAtLH( eyePosition, focusPoint, upDirection );
+        g_d3dDeviceContext->UpdateSubresource( g_d3dConstantBuffers[CB_Frame], 0, nullptr, &g_ViewMatrix, 0, 0 );
+     
+     
+        static float angle = 0.0f;
+        angle += 90.0f * deltaTime;
+        XMVECTOR rotationAxis = XMVectorSet( 0, 1, 1, 0 );
+         
+        g_WorldMatrix = XMMatrixRotationAxis( rotationAxis, XMConvertToRadians(angle) );
+        g_d3dDeviceContext->UpdateSubresource( g_d3dConstantBuffers[CB_Object], 0, nullptr, &g_WorldMatrix, 0, 0 );
+    }
 
 On lines 807-810 we setup the view matrix by placing the camera 10 units back looking towards the origin.  
 On line 810, the constant buffer which is used to store the view matrix is updated using the same method used to update the projection matrix.
@@ -3277,7 +3178,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA1OTI3NjEyNSwxNDk1OTgzMTY1LC0xMT
-Q3MzYzNzY5LC0xNTUzMDE5Mzg3LDIwNTM2ODQxODQsLTcyNTEx
-MzczOF19
+eyJoaXN0b3J5IjpbLTE2NDMyNzUzOV19
 -->
