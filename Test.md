@@ -2488,13 +2488,8 @@ After the vertex shader stage but before the pixel shader stage comes the raster
 
 main.cpp
 
-859
-
-860
-
-`g_d3dDeviceContext->RSSetState( g_d3dRasterizerState );`
-
-`g_d3dDeviceContext->RSSetViewports( 1, &g_Viewport );`
+    g_d3dDeviceContext->RSSetState( g_d3dRasterizerState );
+    g_d3dDeviceContext->RSSetViewports( 1, &g_Viewport );
 
 On line 859 the rasterizer stage is initialized using the  [ID3D11DeviceContext::RSSetState](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476479(v=vs.85).aspx "ID3D11DeviceContext::RSSetState method")  method. This method takes a pointer to a  [ID3D11RasterizerState](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476580(v=vs.85).aspx "ID3D11RasterizerState interface")  object which we created in the  **InitDirectX**  function.
 
@@ -2512,9 +2507,7 @@ Next we’ll setup the pixel shader stage. For this stage, we only have to bind 
 
 main.cpp
 
-862
-
-`g_d3dDeviceContext->PSSetShader( g_d3dPixelShader, nullptr, 0 );`
+	g_d3dDeviceContext->PSSetShader( g_d3dPixelShader, nullptr, 0 );
 
 The pixel shader is bound to the pixel shader stage using the  [ID3D11DeviceContext::PSSetShader](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476472(v=vs.85).aspx "ID3D11DeviceContext::PSSetShader method")  method. This method is similar to the method to set the vertex shader so I won’t detail the arguments here.
 
@@ -2524,13 +2517,8 @@ The output merger stage (as it’s name suggests) merges the output from the pix
 
 main.cpp
 
-864
-
-865
-
-`g_d3dDeviceContext->OMSetRenderTargets( 1, &g_d3dRenderTargetView, g_d3dDepthStencilView );`
-
-`g_d3dDeviceContext->OMSetDepthStencilState( g_d3dDepthStencilState, 1 );`
+    g_d3dDeviceContext->OMSetRenderTargets( 1, &g_d3dRenderTargetView, g_d3dDepthStencilView );
+    g_d3dDeviceContext->OMSetDepthStencilState( g_d3dDepthStencilState, 1 );
 
 The back buffer and depth/stencil buffer are bound to the output merger stage using the  [ID3D11DeviceContext::OMSetRenderTargets](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476464(v=vs.85).aspx "ID3D11DeviceContext::OMSetRenderTargets method")  method. This method takes the following arguments  [[60]](https://www.3dgep.com/introduction-to-directx-11/#OMSetRenderTargets):
 
@@ -2548,10 +2536,7 @@ Now that we have initialized the various stages of the rendering pipeline, we ca
 
 main.cpp
 
-867
-
-`g_d3dDeviceContext->DrawIndexed( _countof(g_Indicies), 0, 0 );`
-
+    g_d3dDeviceContext->DrawIndexed( _countof(g_Indicies), 0, 0 );
 The  [ID3D11DeviceContext::DrawIndexed](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476409(v=vs.85).aspx "ID3D11DeviceContext::DrawIndexed method")  method is used to draw indexed primitives without instancing. The  [ID3D11DeviceContext::DrawIndexed](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476409(v=vs.85).aspx "ID3D11DeviceContext::DrawIndexed method")  method takes the following arguments  [[62]](https://www.3dgep.com/introduction-to-directx-11/#DrawIndexed):
 
 -   **UINT IndexCount**: Number of indices in the currently bound index buffer to draw.
@@ -3092,5 +3077,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzY1NzA3MzAsLTE2NDMyNzUzOV19
+eyJoaXN0b3J5IjpbLTIwMzIyMDgyOTYsLTE2NDMyNzUzOV19
 -->
