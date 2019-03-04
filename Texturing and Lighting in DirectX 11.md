@@ -1,28 +1,3 @@
-
-
-
-> Written with [StackEdit](https://stackedit.io/).
-> # [3D Game Engine Programming](https://www.3dgep.com/)
-
-## Helping you build your dream game engine
-
-[![DirectX 11 Texturing and Lighting](https://www.3dgep.com/wp-content/uploads/2014/05/TextureAndLighting-2014-05-16-16-47-42-68-1000x288.jpg)](https://www.3dgep.com/)Search
-
-### Main menu
-
-[Skip to primary content](https://www.3dgep.com/texturing-lighting-directx-11/#content)
-
--   [Home](https://www.3dgep.com/)
--   [Math](https://www.3dgep.com/category/math/)
--   [Unity](https://www.3dgep.com/category/unity/)
--   [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)
--   [CUDA](https://www.3dgep.com/category/cuda/)
--   [About](https://www.3dgep.com/about-3d-game-engine-programming/)
-
-### Post navigation
-
-[←  Previous](https://www.3dgep.com/introduction-to-directx-11/)[Next  →](https://www.3dgep.com/forward-plus/)
-
 # Texturing and Lighting in DirectX 11
 
 Posted on [May 16, 2014](https://www.3dgep.com/texturing-lighting-directx-11/ "4:59 pm") by [Jeremiah](https://www.3dgep.com/author/jeremiah/ "View all posts by Jeremiah")
@@ -4557,5 +4532,6 @@ This site uses Akismet to reduce spam.  [Learn how your comment data is processe
 
 [Privacy and Cookie Policy](https://www.3dgep.com/privacy-and-cookie-policy/)  [Proudly powered by WordPress](https://wordpress.org/ "Semantic Personal Publishing Platform")
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjkyNjc3OTZdfQ==
+eyJoaXN0b3J5IjpbLTEyMTkzMDk2MDgsLTEwMjkyNjc3OTZdfQ
+==
 -->
