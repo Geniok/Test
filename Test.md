@@ -446,39 +446,10 @@ These are all of the variables that we need to define for the application window
 
 main.cpp
 
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
+    enter code // Direct3D device and swap chain.
+ID3D11Device* g_d3dDevice = nullptr;
+ID3D11DeviceContext* g_d3dDeviceContext = nullptr;
+IDXGISwapChain* g_d3dSwapChain = nullptr;here
 
 `// Direct3D device and swap chain.`
 
@@ -5611,5 +5582,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTAxMTIyMTM4LDE4MTA5NTA2ODBdfQ==
+eyJoaXN0b3J5IjpbMTAyNTA4ODEsOTAxMTIyMTM4LDE4MTA5NT
+A2ODBdfQ==
 -->
