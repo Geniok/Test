@@ -1580,26 +1580,12 @@ Similar to the input variables, we will define a struct which encapsulates the o
 
 SimpleVertexShader.hlsl
 
-22
 
-23
-
-24
-
-25
-
-26
-
-`struct` `VertexShaderOutput`
-
-`{`
-
-`float4 color : COLOR;`
-
-`float4 position : SV_POSITION;`
-
-`};`
-
+    struct VertexShaderOutput
+    {
+        float4 color : COLOR;
+        float4 position : SV_POSITION;
+    };
 The  **VertexShaderOutput**  defines the variables that will be output from the vertex shader. At a minimum, the vertex shader must output a  **float4**  variable bound to the  **SV_Position**  system-value semantic as this is required by the rasterizer stage.
 
 The  **color**  variable is bound to the  **COLOR**  semantic. The pixel shader will also need a matching  **float4**  input variable which is bound to the  **COLOR**  semantic to allow this variable to pass from the vertex shader stage to the pixel shader stage. In order for the color variable in the vertex shader to be correctly bound to the matching variable in the pixel shader, not only does the semantics need to match but the register they are bound to must also match. For this reason, I placed the  **color**  variable before the  **position**variable in the  **VertexShaderOutput**  structure. This way, the first register will be assigned to the  **color**  variable in both the vertex shader and the pixel shader (as we will see briefly).
@@ -1608,41 +1594,16 @@ Now let’s see the entry point function of the vertex shader.
 
 SimpleVertexShader.hlsl
 
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-34
-
-35
-
-36
-
-37
-
-`VertexShaderOutput SimpleVertexShader( AppData IN )`
-
-`{`
-
-`VertexShaderOutput OUT;`
-
-`matrix mvp = mul( projectionMatrix, mul( viewMatrix, worldMatrix ) );`
-
-`OUT.position = mul( mvp, float4( IN.position, 1.0f ) );`
-
-`OUT.color = float4( IN.color, 1.0f );`
-
-`return` `OUT;`
-
-`}`
+    VertexShaderOutput SimpleVertexShader( AppData IN )
+    {
+        VertexShaderOutput OUT;
+     
+        matrix mvp = mul( projectionMatrix, mul( viewMatrix, worldMatrix ) );
+        OUT.position = mul( mvp, float4( IN.position, 1.0f ) );
+        OUT.color = float4( IN.color, 1.0f );
+     
+        return OUT;
+    }
 
 The  **SimpleVertexShader**  function is the entry point for the vertex shader program. It takes an  **AppData**  struct variable as input and returns a  **VertexShaderOutput**  struct as output.
 
@@ -1660,39 +1621,15 @@ The pixel shader for this demo is even simpler than the vertex shader. In this c
 
 SimplePixelShader.hlsl
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-`struct` `PixelShaderInput`
-
-`{`
-
-`float4 color : COLOR;`
-
-`};`
-
-`float4 SimplePixelShader( PixelShaderInput IN ) : SV_TARGET`
-
-`{`
-
-`return` `IN.color;`
-
-`}`
+    struct PixelShaderInput
+    {
+        float4 color : COLOR;
+    };
+     
+    float4 SimplePixelShader( PixelShaderInput IN ) : SV_TARGET
+    {
+        return IN.color;
+    }
 
 The  **PixelShaderInput**  struct defines the input variables that we expect to be passed from the vertex shader stage. In this case, we only need the color value from the vertex shader which was bound to the  **COLOR**  semantic. We don’t need the  **position**  variable which was bound to the  **SV_Position**  system-value semantic because that variable was only required by the rasterizer stage.
 
@@ -4214,5 +4151,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjE5NTkxMTIsLTcyNTExMzczOF19
+eyJoaXN0b3J5IjpbMjA1MzY4NDE4NCwtNzI1MTEzNzM4XX0=
 -->
