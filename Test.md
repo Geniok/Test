@@ -1341,22 +1341,10 @@ The  **ID3D11Device::CreateDepthStencilState**  method has the following signatu
 
 ID3D11Device::CreateDepthStencilState method
 
-1
-
-2
-
-3
-
-4
-
-`HRESULT` `CreateDepthStencilState(`
-
-`[in]` `const` `D3D11_DEPTH_STENCIL_DESC *pDepthStencilDesc,`
-
-`[out] ID3D11DepthStencilState **ppDepthStencilState`
-
-`);`
-
+    HRESULT CreateDepthStencilState(
+      [in]   const D3D11_DEPTH_STENCIL_DESC *pDepthStencilDesc,
+      [out]  ID3D11DepthStencilState **ppDepthStencilState
+    );
 Where:
 
 -   **const D3D11_DEPTH_STENCIL_DESC *pDepthStencilDesc**: Pointer to a depth-stencil state description (see  [D3D11_DEPTH_STENCIL_DESC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476110(v=vs.85).aspx "D3D11_DEPTH_STENCIL_DESC structure")).
@@ -1368,137 +1356,44 @@ The final step in initializing the application for 3D rendering is setting up th
 
 main.cpp
 
-357
-
-358
-
-359
-
-360
-
-361
-
-362
-
-363
-
-364
-
-365
-
-366
-
-367
-
-368
-
-369
-
-370
-
-371
-
-372
-
-373
-
-374
-
-375
-
-376
-
-377
-
-`// Setup rasterizer state.`
-
-`D3D11_RASTERIZER_DESC rasterizerDesc;`
-
-`ZeroMemory( &rasterizerDesc,` `sizeof``(D3D11_RASTERIZER_DESC) );`
-
-`rasterizerDesc.AntialiasedLineEnable = FALSE;`
-
-`rasterizerDesc.CullMode = D3D11_CULL_BACK;`
-
-`rasterizerDesc.DepthBias = 0;`
-
-`rasterizerDesc.DepthBiasClamp = 0.0f;`
-
-`rasterizerDesc.DepthClipEnable = TRUE;`
-
-`rasterizerDesc.FillMode = D3D11_FILL_SOLID;`
-
-`rasterizerDesc.FrontCounterClockwise = FALSE;`
-
-`rasterizerDesc.MultisampleEnable = FALSE;`
-
-`rasterizerDesc.ScissorEnable = FALSE;`
-
-`rasterizerDesc.SlopeScaledDepthBias = 0.0f;`
-
-`// Create the rasterizer state object.`
-
-`hr = g_d3dDevice->CreateRasterizerState( &rasterizerDesc, &g_d3dRasterizerState );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
+    // Setup rasterizer state.
+    D3D11_RASTERIZER_DESC rasterizerDesc;
+    ZeroMemory( &rasterizerDesc, sizeof(D3D11_RASTERIZER_DESC) );
+     
+    rasterizerDesc.AntialiasedLineEnable = FALSE;
+    rasterizerDesc.CullMode = D3D11_CULL_BACK;
+    rasterizerDesc.DepthBias = 0;
+    rasterizerDesc.DepthBiasClamp = 0.0f;
+    rasterizerDesc.DepthClipEnable = TRUE;
+    rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+    rasterizerDesc.FrontCounterClockwise = FALSE;
+    rasterizerDesc.MultisampleEnable = FALSE;
+    rasterizerDesc.ScissorEnable = FALSE;
+    rasterizerDesc.SlopeScaledDepthBias = 0.0f;
+     
+    // Create the rasterizer state object.
+    hr = g_d3dDevice->CreateRasterizerState( &rasterizerDesc, &g_d3dRasterizerState );
+    if ( FAILED(hr) )
+    {
+        return -1;
+    }
 
 The  **D3D11_RASTERIZER_DESC**  structure has the following members  [[37]](https://www.3dgep.com/introduction-to-directx-11/#D3D11_RASTERIZER_DESC):
 
 D3D11_RASTERIZER_DESC structure
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-`typedef` `struct` `D3D11_RASTERIZER_DESC {`
-
-`D3D11_FILL_MODE FillMode;`
-
-`D3D11_CULL_MODE CullMode;`
-
-`BOOL` `FrontCounterClockwise;`
-
-`INT` `DepthBias;`
-
-`FLOAT` `DepthBiasClamp;`
-
-`FLOAT` `SlopeScaledDepthBias;`
-
-`BOOL` `DepthClipEnable;`
-
-`BOOL` `ScissorEnable;`
-
-`BOOL` `MultisampleEnable;`
-
-`BOOL` `AntialiasedLineEnable;`
-
-`} D3D11_RASTERIZER_DESC;`
+    typedef struct D3D11_RASTERIZER_DESC {
+      D3D11_FILL_MODE FillMode;
+      D3D11_CULL_MODE CullMode;
+      BOOL            FrontCounterClockwise;
+      INT             DepthBias;
+      FLOAT           DepthBiasClamp;
+      FLOAT           SlopeScaledDepthBias;
+      BOOL            DepthClipEnable;
+      BOOL            ScissorEnable;
+      BOOL            MultisampleEnable;
+      BOOL            AntialiasedLineEnable;
+    } D3D11_RASTERIZER_DESC;
 
 Where:
 
@@ -4501,5 +4396,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2MDU2NzEzMCwtNDIyNTc0OTY5XX0=
+eyJoaXN0b3J5IjpbLTEwMTE1MzAwNjgsLTQyMjU3NDk2OV19
 -->
