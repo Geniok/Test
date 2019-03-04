@@ -1124,65 +1124,23 @@ The first step is to create a render target view from the swap chain’s back bu
 
 main.cpp
 
-302
 
-303
-
-304
-
-305
-
-306
-
-307
-
-308
-
-309
-
-310
-
-311
-
-312
-
-313
-
-314
-
-315
-
-316
-
-317
-
-`// Next initialize the back buffer of the swap chain and associate it to a`
-
-`// render target view.`
-
-`ID3D11Texture2D* backBuffer;`
-
-`hr = g_d3dSwapChain->GetBuffer( 0, __uuidof(ID3D11Texture2D), (``LPVOID``*)&backBuffer );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
-
-`hr = g_d3dDevice->CreateRenderTargetView( backBuffer, nullptr, &g_d3dRenderTargetView );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
-
-`SafeRelease( backBuffer );`
+    // Next initialize the back buffer of the swap chain and associate it to a 
+    // render target view.
+    ID3D11Texture2D* backBuffer;
+    hr = g_d3dSwapChain->GetBuffer( 0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBuffer );
+    if ( FAILED( hr ) )
+    {
+        return -1;
+    }
+     
+    hr = g_d3dDevice->CreateRenderTargetView( backBuffer, nullptr, &g_d3dRenderTargetView );
+    if ( FAILED( hr ) )
+    {
+        return -1;
+    }
+     
+    SafeRelease( backBuffer );
 
 On line 305, we use the swap chain’s  **GetBuffer**  method to retrieve a pointer to the swap chain’s single back buffer. The swap chain’s back buffer is automatically created based on the content of the  **DXGI_SWAP_CHAIN_DESC**  variable that we passed to the  **D3D11CreateDeviceAndSwapChain**  function so we do not need to manually create a texture for this purpose. However we do need to associate the backbuffer to a render target view in order to render to the swap chain’s back buffer.
 
@@ -1194,26 +1152,12 @@ The  **ID3D11Device::CreateRenderTargetView**  has the following signature  [[29
 
 ID3D11Device::CreateRenderTargetView method
 
-1
 
-2
-
-3
-
-4
-
-5
-
-`HRESULT` `CreateRenderTargetView(`
-
-`[in] ID3D11Resource *pResource,`
-
-`[in]` `const` `D3D11_RENDER_TARGET_VIEW_DESC *pDesc,`
-
-`[out] ID3D11RenderTargetView **ppRTView`
-
-`);`
-
+    HRESULT CreateRenderTargetView(
+      [in]   ID3D11Resource *pResource,
+      [in]   const D3D11_RENDER_TARGET_VIEW_DESC *pDesc,
+      [out]  ID3D11RenderTargetView **ppRTView
+    );
 Where:
 
 -   **ID3D11Resource *pResource**: Pointer to a  [ID3D11Resource](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476584(v=vs.85).aspx "ID3D11Resource interface") that represents a render target. This resource must have been created with the  [D3D11_BIND_RENDER_TARGET](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476085(v=vs.85).aspx "D3D11_BIND_FLAG enumeration")  flag.
@@ -1232,135 +1176,46 @@ Let’s first create a 2D texture that will be used as a depth (and stencil) buf
 
 main.cpp
 
-319
 
-320
-
-321
-
-322
-
-323
-
-324
-
-325
-
-326
-
-327
-
-328
-
-329
-
-330
-
-331
-
-332
-
-333
-
-334
-
-335
-
-336
-
-337
-
-338
-
-`// Create the depth buffer for use with the depth/stencil view.`
-
-`D3D11_TEXTURE2D_DESC depthStencilBufferDesc;`
-
-`ZeroMemory( &depthStencilBufferDesc,` `sizeof``(D3D11_TEXTURE2D_DESC) );`
-
-`depthStencilBufferDesc.ArraySize = 1;`
-
-`depthStencilBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;`
-
-`depthStencilBufferDesc.CPUAccessFlags = 0;` `// No CPU access required.`
-
-`depthStencilBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;`
-
-`depthStencilBufferDesc.Width = clientWidth;`
-
-`depthStencilBufferDesc.Height = clientHeight;`
-
-`depthStencilBufferDesc.MipLevels = 1;`
-
-`depthStencilBufferDesc.SampleDesc.Count = 1;`
-
-`depthStencilBufferDesc.SampleDesc.Quality = 0;`
-
-`depthStencilBufferDesc.Usage = D3D11_USAGE_DEFAULT;`
-
-`hr = g_d3dDevice->CreateTexture2D( &depthStencilBufferDesc, nullptr, &g_d3dDepthStencilBuffer );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
-
+    // Create the depth buffer for use with the depth/stencil view.
+    D3D11_TEXTURE2D_DESC depthStencilBufferDesc;
+    ZeroMemory( &depthStencilBufferDesc, sizeof(D3D11_TEXTURE2D_DESC) );
+     
+    depthStencilBufferDesc.ArraySize = 1;
+    depthStencilBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+    depthStencilBufferDesc.CPUAccessFlags = 0; // No CPU access required.
+    depthStencilBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+    depthStencilBufferDesc.Width = clientWidth;
+    depthStencilBufferDesc.Height = clientHeight;
+    depthStencilBufferDesc.MipLevels = 1;
+    depthStencilBufferDesc.SampleDesc.Count = 1;
+    depthStencilBufferDesc.SampleDesc.Quality = 0;
+    depthStencilBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+     
+    hr = g_d3dDevice->CreateTexture2D( &depthStencilBufferDesc, nullptr, &g_d3dDepthStencilBuffer );
+    if ( FAILED(hr) )
+    {
+        return -1;
+    }
 To create the texture, we must first define a  **D3D11_TEXTURE2D_DESC**  variable that will be used to describe the texture we want to create.
 
 The  **D3D11_TEXTURE2D_DESC**  structure has the following members  [[30]](https://www.3dgep.com/introduction-to-directx-11/#D3D11_TEXTURE2D_DESC):
 
 D3D11_TEXTURE2D_DESC structure
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-`typedef` `struct` `D3D11_TEXTURE2D_DESC {`
-
-`UINT` `Width;`
-
-`UINT` `Height;`
-
-`UINT` `MipLevels;`
-
-`UINT` `ArraySize;`
-
-`DXGI_FORMAT Format;`
-
-`DXGI_SAMPLE_DESC SampleDesc;`
-
-`D3D11_USAGE Usage;`
-
-`UINT` `BindFlags;`
-
-`UINT` `CPUAccessFlags;`
-
-`UINT` `MiscFlags;`
-
-`} D3D11_TEXTURE2D_DESC;`
+    typedef struct D3D11_TEXTURE2D_DESC {
+      UINT             Width;
+      UINT             Height;
+      UINT             MipLevels;
+      UINT             ArraySize;
+      DXGI_FORMAT      Format;
+      DXGI_SAMPLE_DESC SampleDesc;
+      D3D11_USAGE      Usage;
+      UINT             BindFlags;
+      UINT             CPUAccessFlags;
+      UINT             MiscFlags;
+    } D3D11_TEXTURE2D_DESC;
 
 Where:
 
@@ -4740,5 +4595,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODMzMDI4NzYsLTQyMjU3NDk2OV19
+eyJoaXN0b3J5IjpbLTY5NzIxNTgyMCwtNDIyNTc0OTY5XX0=
 -->
