@@ -611,79 +611,25 @@ The first thing our application will do is initialize and create the window. We 
 
 main.cpp
 
-99
-
-100
-
-101
-
-102
-
-103
-
-104
-
-105
-
-106
-
-107
-
-108
-
-109
-
-110
-
-111
-
-112
-
-113
-
-114
-
-115
-
-116
-
-117
-
-`/**`
-
-`* Initialize the application window.`
-
-`*/`
-
-`int` `InitApplication(` `HINSTANCE` `hInstance,` `int` `cmdShow )`
-
-`{`
-
-`WNDCLASSEX wndClass = {0};`
-
-`wndClass.cbSize =` `sizeof``( WNDCLASSEX );`
-
-`wndClass.style = CS_HREDRAW | CS_VREDRAW;`
-
-`wndClass.lpfnWndProc = &WndProc;`
-
-`wndClass.hInstance = hInstance;`
-
-`wndClass.hCursor = LoadCursor( nullptr, IDC_ARROW );`
-
-`wndClass.hbrBackground = (``HBRUSH``)(COLOR_WINDOW+1);`
-
-`wndClass.lpszMenuName = nullptr;`
-
-`wndClass.lpszClassName = g_WindowClassName;`
-
-`if` `( !RegisterClassEx(&wndClass) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
+    /**
+     * Initialize the application window.
+     */
+    int InitApplication( HINSTANCE hInstance, int cmdShow )
+    {
+        WNDCLASSEX wndClass = {0};
+        wndClass.cbSize = sizeof( WNDCLASSEX );
+        wndClass.style = CS_HREDRAW | CS_VREDRAW;
+        wndClass.lpfnWndProc = &WndProc;
+        wndClass.hInstance = hInstance;
+        wndClass.hCursor = LoadCursor( nullptr, IDC_ARROW );
+        wndClass.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
+        wndClass.lpszMenuName = nullptr;
+        wndClass.lpszClassName = g_WindowClassName;
+     
+        if ( !RegisterClassEx(&wndClass) )
+        {
+            return -1;
+        }
 
 The window class defines a set of attributes which define a window template. Each window your application creates must have a window class registered which is required to create the window.
 
@@ -691,61 +637,20 @@ The  **WNDCLASSEX**  structure has the following definition  [[16]](https://www.
 
 WNDCLASSEX structure
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-`typedef` `struct` `tagWNDCLASSEX {`
-
-`UINT` `cbSize;`
-
-`UINT` `style;`
-
-`WNDPROC lpfnWndProc;`
-
-`int` `cbClsExtra;`
-
-`int` `cbWndExtra;`
-
-`HINSTANCE` `hInstance;`
-
-`HICON` `hIcon;`
-
-`HCURSOR` `hCursor;`
-
-`HBRUSH` `hbrBackground;`
-
-`LPCTSTR` `lpszMenuName;`
-
-`LPCTSTR` `lpszClassName;`
-
-`HICON` `hIconSm;`
-
-`} WNDCLASSEX, *PWNDCLASSEX;`
+    typedef struct tagWNDCLASSEX {
+      UINT      cbSize;
+      UINT      style;
+      WNDPROC   lpfnWndProc;
+      int       cbClsExtra;
+      int       cbWndExtra;
+      HINSTANCE hInstance;
+      HICON     hIcon;
+      HCURSOR   hCursor;
+      HBRUSH    hbrBackground;
+      LPCTSTR   lpszMenuName;
+      LPCTSTR   lpszClassName;
+      HICON     hIconSm;
+    } WNDCLASSEX, *PWNDCLASSEX;
 
 And the members have the following definition:
 
@@ -787,73 +692,26 @@ With the window class registered, we can create a window instance using this cla
 
 main.cpp
 
-120
 
-121
-
-122
-
-123
-
-124
-
-125
-
-126
-
-127
-
-128
-
-129
-
-130
-
-131
-
-132
-
-133
-
-134
-
-135
-
-136
-
-137
-
-138
-
-`RECT windowRect = { 0, 0, g_WindowWidth, g_WindowHeight };`
-
-`AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW, FALSE );`
-
-`g_WindowHandle = CreateWindowA( g_WindowClassName, g_WindowName,`
-
-`WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,`
-
-`windowRect.right - windowRect.left,`
-
-`windowRect.bottom - windowRect.top,`
-
-`nullptr, nullptr, hInstance, nullptr );`
-
-`if` `( !g_WindowHandle )`
-
-`{`
-
-`return` `-1;`
-
-`}`
-
-`ShowWindow( g_WindowHandle, cmdShow );`
-
-`UpdateWindow( g_WindowHandle );`
-
-`return` `0;`
-
-`}`
+	    RECT windowRect = { 0, 0, g_WindowWidth, g_WindowHeight };
+        AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW, FALSE);
+     
+        g_WindowHandle = CreateWindowA( g_WindowClassName, g_WindowName, 
+            WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 
+            windowRect.right - windowRect.left, 
+            windowRect.bottom - windowRect.top, 
+            nullptr, nullptr, hInstance, nullptr );
+     
+        if ( !g_WindowHandle )
+        {
+            return -1;
+        }
+     
+        ShowWindow( g_WindowHandle, cmdShow );
+        UpdateWindow( g_WindowHandle );
+     
+        return 0;
+    }
 
 We want to create a window with a client area of  **g_WindowWidth**  by  **g_WindowHeight**  but if we create a window with those dimensions, the client are will be slightly smaller. In order to get a window with a client area the size we want, we can use the  [AdjustWindowRect](https://msdn.microsoft.com/en-us/library/windows/desktop/ms632665(v=vs.85).aspx "AdjustWindowRect")  function to adjust the inital window rectangle to account for the window style.
 
@@ -5398,5 +5256,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0NDI4MDQyNywtMTY1MTk3Mjg5MV19
+eyJoaXN0b3J5IjpbLTQyMjU3NDk2OSwtMTY1MTk3Mjg5MV19
 -->
