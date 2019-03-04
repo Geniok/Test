@@ -580,47 +580,18 @@ The last part of the preamble is the function declarations.
 
 main.cpp
 
-86
-
-87
-
-88
-
-89
-
-90
-
-91
-
-92
-
-93
-
-94
-
-95
-
-96
-
-97
-
-`// Forward declarations.`
-
-`LRESULT` `CALLBACK WndProc (``HWND` `hwnd,` `UINT` `message,` `WPARAM` `wParam,` `LPARAM` `lParam);`
-
-`template``<` `class` `ShaderClass >`
-
-`ShaderClass* LoadShader(` `const` `std::wstring& fileName,` `const` `std::string& entryPoint,` `const` `std::string& profile );`
-
-`bool` `LoadContent();`
-
-`void UnloadContent();`
-
-`void Update(` `float` `deltaTime );`
-
-`void Render();`
-
-`void Cleanup();`
+    // Forward declarations.
+    LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+     
+    template< class ShaderClass >
+    ShaderClass* LoadShader( const std::wstring& fileName, const std::string& entryPoint, const std::string& profile );
+     
+    bool LoadContent();
+    void UnloadContent();
+     
+    void Update( float deltaTime );
+    void Render();
+    void Cleanup();
 
 The  **WndProc**  function is the function that will handle any mouse, keyboard, and window events that are sent to our application window.
 
@@ -5427,5 +5398,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NTE5NzI4OTFdfQ==
+eyJoaXN0b3J5IjpbMTA0NDI4MDQyNywtMTY1MTk3Mjg5MV19
 -->
