@@ -2194,41 +2194,16 @@ The  **D3D11_INPUT_ELEMENT_DESC**  structure has the following definition  [[49]
 
 D3D11_INPUT_ELEMENT_DESC structure
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-`typedef` `struct` `D3D11_INPUT_ELEMENT_DESC {`
-
-`LPCSTR` `SemanticName;`
-
-`UINT` `SemanticIndex;`
-
-`DXGI_FORMAT Format;`
-
-`UINT` `InputSlot;`
-
-`UINT` `AlignedByteOffset;`
-
-`D3D11_INPUT_CLASSIFICATION InputSlotClass;`
-
-`UINT` `InstanceDataStepRate;`
-
-`} D3D11_INPUT_ELEMENT_DESC;`
+    typedef struct D3D11_INPUT_ELEMENT_DESC {
+      LPCSTR                     SemanticName;
+      UINT                       SemanticIndex;
+      DXGI_FORMAT                Format;
+      UINT                       InputSlot;
+      UINT                       AlignedByteOffset;
+      D3D11_INPUT_CLASSIFICATION InputSlotClass;
+      UINT                       InstanceDataStepRate;
+    } D3D11_INPUT_ELEMENT_DESC;
 
 Where:
 
@@ -2246,57 +2221,20 @@ Armed with this information, we can define the  **D3D11_INPUT_ELEMENT_DESC**  ar
 
 main.cpp
 
-482
-
-483
-
-484
-
-485
-
-486
-
-487
-
-488
-
-489
-
-490
-
-491
-
-492
-
-493
-
-494
-
-495
-
-`// Create the input layout for the vertex shader.`
-
-`D3D11_INPUT_ELEMENT_DESC vertexLayoutDesc[] =`
-
-`{`
-
-`{` `"POSITION"``, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(VertexPosColor,Position), D3D11_INPUT_PER_VERTEX_DATA, 0 },`
-
-`{` `"COLOR"``, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(VertexPosColor,Color), D3D11_INPUT_PER_VERTEX_DATA, 0 }`
-
-`};`
-
-`hr = g_d3dDevice->CreateInputLayout( vertexLayoutDesc, _countof(vertexLayoutDesc), vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), &g_d3dInputLayout );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`SafeRelease( vertexShaderBlob );`
+    // Create the input layout for the vertex shader.
+    D3D11_INPUT_ELEMENT_DESC vertexLayoutDesc[] = 
+    {
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(VertexPosColor,Position), D3D11_INPUT_PER_VERTEX_DATA, 0 },
+        { "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(VertexPosColor,Color), D3D11_INPUT_PER_VERTEX_DATA, 0 }
+    };
+     
+    hr = g_d3dDevice->CreateInputLayout( vertexLayoutDesc, _countof(vertexLayoutDesc), vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), &g_d3dInputLayout );
+    if ( FAILED(hr) )
+    {
+        return false;
+    }
+     
+    SafeRelease( vertexShaderBlob );
 
 The vertex buffer for our cube geometry contains two attributes; the vertex position and the vertex color. Both the vertex position and the vertex color are passed to the vertex shader as a 3-component 32-bit floating-point vector. Since both attributes are stored interleaved in a single vertex buffer (instead of storing each attribute packed in separate vertex buffers) they both use the first (0) input slot. Since both of these attributes describe per-vertex (as apposed to per-instance) attributes, they use the  **D3D11_INPUT_PER_VERTEX_DATA**  input classification.
 
@@ -2310,83 +2248,27 @@ The pixel shader is loaded in a similar way to the vertex shader but there is no
 
 main.cpp
 
-497
-
-498
-
-499
-
-500
-
-501
-
-502
-
-503
-
-504
-
-505
-
-506
-
-507
-
-508
-
-509
-
-510
-
-511
-
-512
-
-513
-
-514
-
-515
-
-516
-
-517
-
-`// Load the compiled pixel shader.`
-
-`ID3DBlob* pixelShaderBlob;`
-
-`#if _DEBUG`
-
-`LPCWSTR` `compiledPixelShaderObject = L``"SimplePixelShader_d.cso"``;`
-
-`#else`
-
-`LPCWSTR` `compiledPixelShaderObject = L``"SimplePixelShader.cso"``;`
-
-`#endif`
-
-`hr = D3DReadFileToBlob( compiledPixelShaderObject, &pixelShaderBlob );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`hr = g_d3dDevice->CreatePixelShader( pixelShaderBlob->GetBufferPointer(), pixelShaderBlob->GetBufferSize(), nullptr, &g_d3dPixelShader );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`SafeRelease( pixelShaderBlob );`
+	    // Load the compiled pixel shader.
+        ID3DBlob* pixelShaderBlob;
+    #if _DEBUG
+        LPCWSTR compiledPixelShaderObject = L"SimplePixelShader_d.cso";
+    #else
+        LPCWSTR compiledPixelShaderObject = L"SimplePixelShader.cso";
+    #endif
+     
+        hr = D3DReadFileToBlob( compiledPixelShaderObject, &pixelShaderBlob );
+        if ( FAILED(hr) )
+        {
+            return false;
+        }
+     
+        hr = g_d3dDevice->CreatePixelShader( pixelShaderBlob->GetBufferPointer(), pixelShaderBlob->GetBufferSize(), nullptr, &g_d3dPixelShader );
+        if ( FAILED( hr ) )
+        {
+            return false;
+        }
+     
+        SafeRelease( pixelShaderBlob );
 
 This code snippet is very similar to the vertex shader loading so it will not be explained in detail.
 
@@ -3395,7 +3277,7 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0Mzk4NjUyNDksMTQ5NTk4MzE2NSwtMT
-E0NzM2Mzc2OSwtMTU1MzAxOTM4NywyMDUzNjg0MTg0LC03MjUx
-MTM3MzhdfQ==
+eyJoaXN0b3J5IjpbMTA1OTI3NjEyNSwxNDk1OTgzMTY1LC0xMT
+Q3MzYzNzY5LC0xNTUzMDE5Mzg3LDIwNTM2ODQxODQsLTcyNTEx
+MzczOF19
 -->
