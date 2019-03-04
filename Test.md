@@ -383,41 +383,19 @@ The next set of headers includes the Direct3D API. The  **d3dcompiler**  header 
 
 DirectXTemplatePCH.h
 
-`// Link library dependencies
-`
+    // Link library dependencies
+    #pragma comment(lib, "d3d11.lib")
+    #pragma comment(lib, "dxgi.lib")
+    #pragma comment(lib, "dxgi.lib")
+    #pragma comment(lib, "d3dcompiler.lib")
+    #pragma comment(lib, "winmm.lib")
 
-
-`#pragma comment(lib, "d3d11.lib")`
-
-`#pragma comment(lib, "dxgi.lib")`
-
-`#pragma comment(lib, "d3dcompiler.lib")`
-
-`#pragma comment(lib, "winmm.lib")`
 
 This set of statements will cause the library dependencies to be automatically linked in the linker stage. You can also specify these libraries in the  **Additional Dependencies**property in the  **Linker**  options if you want but putting them here simplifies the project configuration settings. Also if you were creating a library project, this file could be included in the global header file of another project to perform automatic linking of the required library dependencies.
 
 DirectXTemplatePCH.h
 
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
+    enter code here
 
 `// Safely release a COM object.`
 
@@ -5668,5 +5646,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyOTc4NzczLDE4MTA5NTA2ODBdfQ==
+eyJoaXN0b3J5IjpbLTE3NDkyNzIxMTQsMTgxMDk1MDY4MF19
 -->
