@@ -2645,139 +2645,44 @@ And the final version of the main function which also loads the demo content and
 
 main.cpp
 
-741
 
-742
-
-743
-
-744
-
-745
-
-746
-
-747
-
-748
-
-749
-
-750
-
-751
-
-752
-
-753
-
-754
-
-755
-
-756
-
-757
-
-758
-
-759
-
-760
-
-761
-
-762
-
-763
-
-764
-
-765
-
-766
-
-767
-
-768
-
-769
-
-770
-
-771
-
-772
-
-773
-
-774
-
-775
-
-776
-
-777
-
-`int` `WINAPI wWinMain(` `HINSTANCE` `hInstance,` `HINSTANCE` `prevInstance,` `LPWSTR` `cmdLine,` `int` `cmdShow )`
-
-`{`
-
-`UNREFERENCED_PARAMETER( prevInstance );`
-
-`UNREFERENCED_PARAMETER( cmdLine );`
-
-`// Check for DirectX Math library support.`
-
-`if` `( !XMVerifyCPUSupport() )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to verify DirectX Math library support."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`if``( InitApplication(hInstance, cmdShow) != 0 )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to create applicaiton window."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`if` `( InitDirectX(hInstance, g_EnableVSync) != 0 )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to create DirectX device and swap chain."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`if` `( !LoadContent() )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to load content."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`int` `returnCode = Run();`
-
-`UnloadContent();`
-
-`Cleanup();`
-
-`return` `returnCode;`
-
-`}`
+    int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine, int cmdShow )
+    {
+        UNREFERENCED_PARAMETER( prevInstance );
+        UNREFERENCED_PARAMETER( cmdLine );
+     
+        // Check for DirectX Math library support.
+        if ( !XMVerifyCPUSupport() )
+        {
+            MessageBox( nullptr, TEXT("Failed to verify DirectX Math library support."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        if( InitApplication(hInstance, cmdShow) != 0 )
+        {
+            MessageBox( nullptr, TEXT("Failed to create applicaiton window."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        if ( InitDirectX(hInstance, g_EnableVSync) != 0 )
+        {
+            MessageBox( nullptr, TEXT("Failed to create DirectX device and swap chain."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        if ( !LoadContent() )
+        {
+            MessageBox( nullptr, TEXT("Failed to load content."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        int returnCode = Run();
+     
+        UnloadContent();
+        Cleanup();
+     
+        return returnCode;
+    }
 
 ## Run the Demo
 
@@ -2913,5 +2818,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwMzI4NTg2MSwtMTY0MzI3NTM5XX0=
+eyJoaXN0b3J5IjpbMTczNzU3NzEyN119
 -->
