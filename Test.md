@@ -416,45 +416,20 @@ We first need to include the global header file that we created in the previous 
 
 main.cpp
 
-1
-
-2
-
-`#include <DirectXTemplatePCH.h>`
-
-`using` `namespace` `DirectX;`
-
+    #include <DirectXTemplatePCH.h>
+    using` `namespace` `DirectX;`
+    
 On line 2 I include the  **DirectX**  namespace into the global namespace. All of the functions and types defined in the  **DirectXMath**  API are wrapped in the DirectX namespace. I got really tired of typing out the DirectX namespace every time I wanted to use a vector or a matrix so instead I just import the namespace.
 
 The first set of globals define some properties for the application window.
 
 main.cpp
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-`const` `LONG` `g_WindowWidth = 1280;`
-
-`const` `LONG` `g_WindowHeight = 720;`
-
-`LPCSTR` `g_WindowClassName =` `"DirectXWindowClass"``;`
-
-`LPCSTR` `g_WindowName =` `"DirectX Template"``;`
-
-`HWND` `g_WindowHandle = 0;`
-
-`const` `BOOL` `g_EnableVSync = TRUE;`
+    const` `LONG` `g_WindowWidth = 1280;
+    const` `LONG` `g_WindowHeight = 720;
+    LPCSTR` `g_WindowClassName =` `"DirectXWindowClass"``;`
+    LPCSTR` `g_WindowName =` `"DirectX Template"``;
+    HWND` `g_WindowHandle = 0;
+    const` `BOOL` `g_EnableVSync = TRUE;
 
 The size of the window is defined by the  **g_WindowWidth**, and  **g_WindowHeight**variables. The actual window that we will create will be slightly larger than this because these variables actually define the size of the renderable area (or client area) of the window. The actual window size including the window frame will be computed before the actual window is created.
 
@@ -5635,5 +5610,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5NzE5OTA4NywxODEwOTUwNjgwXX0=
+eyJoaXN0b3J5IjpbLTEyODA5NzE5NDgsMTgxMDk1MDY4MF19
 -->
