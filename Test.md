@@ -1238,26 +1238,12 @@ With the  **D3D11_TEXTURE2D_DESC**  variable configured, we can create the textu
 
 ID3D11Device::CreateTexture2D method
 
-1
 
-2
-
-3
-
-4
-
-5
-
-`HRESULT` `CreateTexture2D(`
-
-`[in]` `const` `D3D11_TEXTURE2D_DESC *pDesc,`
-
-`[in]` `const` `D3D11_SUBRESOURCE_DATA *pInitialData,`
-
-`[out] ID3D11Texture2D **ppTexture2D`
-
-`);`
-
+    HRESULT CreateTexture2D(
+      [in]   const D3D11_TEXTURE2D_DESC *pDesc,
+      [in]   const D3D11_SUBRESOURCE_DATA *pInitialData,
+      [out]  ID3D11Texture2D **ppTexture2D
+    );
 Where:
 
 -   **const D3D11_TEXTURE2D_DESC *pDesc**: A pointer to a  [D3D11_TEXTURE2D_DESC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476253(v=vs.85).aspx "D3D11_TEXTURE2D_DESC structure")  structure that describes a 2D texture resource.
@@ -1270,50 +1256,23 @@ After we have created the depth/stencil buffer resource, we must create a  **ID3
 
 main.cpp
 
-340
 
-341
-
-342
-
-343
-
-344
-
-`hr = g_d3dDevice->CreateDepthStencilView( g_d3dDepthStencilBuffer, nullptr, &g_d3dDepthStencilView );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
+    hr = g_d3dDevice->CreateDepthStencilView( g_d3dDepthStencilBuffer, nullptr, &g_d3dDepthStencilView );
+    if ( FAILED(hr) )
+    {
+        return -1;
+    }
 
 The  **ID3D11Device::CreateDepthStencilView**  method has the following signature  [[33]](https://www.3dgep.com/introduction-to-directx-11/#CreateDepthStencilView):
 
 ID3D11Device::CreateDepthStencilView method
 
-1
 
-2
-
-3
-
-4
-
-5
-
-`HRESULT` `CreateDepthStencilView(`
-
-`[in] ID3D11Resource *pResource,`
-
-`[in]` `const` `D3D11_DEPTH_STENCIL_VIEW_DESC *pDesc,`
-
-`[out] ID3D11DepthStencilView **ppDepthStencilView`
-
-`);`
-
+    HRESULT CreateDepthStencilView(
+      [in]   ID3D11Resource *pResource,
+      [in]   const D3D11_DEPTH_STENCIL_VIEW_DESC *pDesc,
+      [out]  ID3D11DepthStencilView **ppDepthStencilView
+    );
 Where:
 
 -   **ID3D11Resource *pResource**: Pointer to the resource that will serve as the depth-stencil surface. This resource must have been created with the  **D3D11_BIND_DEPTH_STENCIL**  flag.
@@ -1330,85 +1289,32 @@ First let’s create the  **ID3D11DepthStencilState**  object. To do this, we fi
 
 main.cpp
 
-346
 
-347
-
-348
-
-349
-
-350
-
-351
-
-352
-
-353
-
-354
-
-355
-
-`// Setup depth/stencil state.`
-
-`D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc;`
-
-`ZeroMemory( &depthStencilStateDesc,` `sizeof``(D3D11_DEPTH_STENCIL_DESC) );`
-
-`depthStencilStateDesc.DepthEnable = TRUE;`
-
-`depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;`
-
-`depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS;`
-
-`depthStencilStateDesc.StencilEnable = FALSE;`
-
-`hr = g_d3dDevice->CreateDepthStencilState( &depthStencilStateDesc, &g_d3dDepthStencilState );`
+    // Setup depth/stencil state.
+    D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc;
+    ZeroMemory( &depthStencilStateDesc, sizeof(D3D11_DEPTH_STENCIL_DESC) );
+     
+    depthStencilStateDesc.DepthEnable = TRUE;
+    depthStencilStateDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+    depthStencilStateDesc.DepthFunc = D3D11_COMPARISON_LESS;
+    depthStencilStateDesc.StencilEnable = FALSE;
+     
+    hr = g_d3dDevice->CreateDepthStencilState( &depthStencilStateDesc, &g_d3dDepthStencilState );
 
 The  **D3D11_DEPTH_STENCIL_DESC**  is a structure with the following members  [[34]](https://www.3dgep.com/introduction-to-directx-11/#D3D11_DEPTH_STENCIL_DESC):
 
 D3D11_DEPTH_STENCIL_DESC structure
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-`typedef` `struct` `D3D11_DEPTH_STENCIL_DESC {`
-
-`BOOL` `DepthEnable;`
-
-`D3D11_DEPTH_WRITE_MASK DepthWriteMask;`
-
-`D3D11_COMPARISON_FUNC DepthFunc;`
-
-`BOOL` `StencilEnable;`
-
-`UINT8 StencilReadMask;`
-
-`UINT8 StencilWriteMask;`
-
-`D3D11_DEPTH_STENCILOP_DESC FrontFace;`
-
-`D3D11_DEPTH_STENCILOP_DESC BackFace;`
-
-`} D3D11_DEPTH_STENCIL_DESC;`
+    typedef struct D3D11_DEPTH_STENCIL_DESC {
+      BOOL                       DepthEnable;
+      D3D11_DEPTH_WRITE_MASK     DepthWriteMask;
+      D3D11_COMPARISON_FUNC      DepthFunc;
+      BOOL                       StencilEnable;
+      UINT8                      StencilReadMask;
+      UINT8                      StencilWriteMask;
+      D3D11_DEPTH_STENCILOP_DESC FrontFace;
+      D3D11_DEPTH_STENCILOP_DESC BackFace;
+    } D3D11_DEPTH_STENCIL_DESC;
 
 Where:
 
@@ -4595,5 +4501,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY5NzIxNTgyMCwtNDIyNTc0OTY5XX0=
+eyJoaXN0b3J5IjpbMTA2MDU2NzEzMCwtNDIyNTc0OTY5XX0=
 -->
