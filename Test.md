@@ -1822,45 +1822,17 @@ Next, we’ll specialize on the  [ID3D11PixelShader](https://msdn.microsoft.com/
 
 main.cpp
 
-635
-
-636
-
-637
-
-638
-
-639
-
-640
-
-641
-
-642
-
-643
-
-644
-
-645
-
-`template``<>`
-
-`ID3D11PixelShader* CreateShader<ID3D11PixelShader>( ID3DBlob* pShaderBlob, ID3D11ClassLinkage* pClassLinkage )`
-
-`{`
-
-`assert``( g_d3dDevice );`
-
-`assert``( pShaderBlob );`
-
-`ID3D11PixelShader* pPixelShader = nullptr;`
-
-`g_d3dDevice->CreatePixelShader( pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pClassLinkage, &pPixelShader );`
-
-`return` `pPixelShader;`
-
-`}`
+    template<>
+    ID3D11PixelShader* CreateShader<ID3D11PixelShader>( ID3DBlob* pShaderBlob, ID3D11ClassLinkage* pClassLinkage )
+    {
+        assert( g_d3dDevice );
+        assert( pShaderBlob );
+     
+        ID3D11PixelShader* pPixelShader = nullptr;
+        g_d3dDevice->CreatePixelShader( pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pClassLinkage, &pPixelShader );
+     
+        return pPixelShader;
+    }
 
 Clearly this version of the template function is not much different than that of the vertex shader type except in the method that is used to create the shader object but we needed to do this to simplify the functionality of the  **LoadShader**  function which I will show next.
 
@@ -3880,6 +3852,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxOTg1MDIzNiwtMTU1MzAxOTM4NywyMD
-UzNjg0MTg0LC03MjUxMTM3MzhdfQ==
+eyJoaXN0b3J5IjpbLTExNDczNjM3NjksLTE1NTMwMTkzODcsMj
+A1MzY4NDE4NCwtNzI1MTEzNzM4XX0=
 -->
