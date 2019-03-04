@@ -497,43 +497,16 @@ Next we’ll declare set of buffers that will be used to update the constant var
 
 main.cpp
 
-39
-
-40
-
-41
-
-42
-
-43
-
-44
-
-45
-
-46
-
-47
-
-48
-
-`// Shader resources`
-
-`enum` `ConstantBuffer`
-
-`{`
-
-`CB_Application,`
-
-`CB_Frame,`
-
-`CB_Object,`
-
-`NumConstantBuffers`
-
-`};`
-
-`ID3D11Buffer* g_d3dConstantBuffers[NumConstantBuffers];`
+    // Shader resources
+    enum ConstantBuffer
+    {
+        CB_Application,
+        CB_Frame,
+        CB_Object,
+        NumConstantBuffers
+    };
+ 
+    ID3D11Buffer* g_d3dConstantBuffers[NumConstantBuffers];
 
 Here we declare three constant buffers. Constant buffers are used to store shader variables that remain constant during current draw call. An example of a constant shader variable is the camera’s projection matrix. Since the projection matrix will be the same for every vertex of the object, this variable does not need to be passed to the shader using vertex data. Instead, we declare a constant buffer that stores the projection matrix of the camera and this shader variable only needs to be updated when the camera’s projection matrix is modified (which is to say, not often).
 
@@ -547,21 +520,10 @@ The next set of variables define the variables that will be updated by the appli
 
 main.cpp
 
-50
-
-51
-
-52
-
-53
-
-`// Demo parameters`
-
-`XMMATRIX g_WorldMatrix;`
-
-`XMMATRIX g_ViewMatrix;`
-
-`XMMATRIX g_ProjectionMatrix;`
+    // Demo parameters
+    XMMATRIX g_WorldMatrix;
+    XMMATRIX g_ViewMatrix;
+    XMMATRIX g_ProjectionMatrix;
 
 We will only draw a single object on the screen in this demo. For this reason, we only need to keep track of a single world matrix which will transform the object’s vertices into world space. The  **g_WorldMatrix**  is a 4×4 matrix which will be used to store the world matrix of the cube in our scene.
 
@@ -5544,6 +5506,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzNjM5MDQ2NiwtMTYwNjAwNzUxNiw5MD
+eyJoaXN0b3J5IjpbMTQzNzc2NjQ0NiwtMTYwNjAwNzUxNiw5MD
 ExMjIxMzgsMTgxMDk1MDY4MF19
 -->
