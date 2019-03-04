@@ -1687,179 +1687,56 @@ First let’s declare the  **GetLatestProfile**  template function.
 
 main.cpp
 
-534
-
-535
-
-536
-
-`// Get the latest profile for the specified shader type.`
-
-`template``<` `class` `ShaderClass >`
-
-`std::string GetLatestProfile();`
+    // Get the latest profile for the specified shader type.
+    template< class ShaderClass >
+    std::string GetLatestProfile();
 
 Next we will specialize this function based on the vertex shader type.
 
 main.cpp
 
-538
 
-539
-
-540
-
-541
-
-542
-
-543
-
-544
-
-545
-
-546
-
-547
-
-548
-
-549
-
-550
-
-551
-
-552
-
-553
-
-554
-
-555
-
-556
-
-557
-
-558
-
-559
-
-560
-
-561
-
-562
-
-563
-
-564
-
-565
-
-566
-
-567
-
-568
-
-569
-
-570
-
-571
-
-572
-
-573
-
-574
-
-575
-
-576
-
-577
-
-578
-
-`template``<>`
-
-`std::string GetLatestProfile<ID3D11VertexShader>()`
-
-`{`
-
-`assert``( g_d3dDevice );`
-
-`// Query the current feature level:`
-
-`D3D_FEATURE_LEVEL featureLevel = g_d3dDevice->GetFeatureLevel();`
-
-`switch``( featureLevel )`
-
-`{`
-
-`case` `D3D_FEATURE_LEVEL_11_1:`
-
-`case` `D3D_FEATURE_LEVEL_11_0:`
-
-`{`
-
-`return` `"vs_5_0"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_10_1:`
-
-`{`
-
-`return` `"vs_4_1"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_10_0:`
-
-`{`
-
-`return` `"vs_4_0"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_9_3:`
-
-`{`
-
-`return` `"vs_4_0_level_9_3"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_9_2:`
-
-`case` `D3D_FEATURE_LEVEL_9_1:`
-
-`{`
-
-`return` `"vs_4_0_level_9_1"``;`
-
-`}`
-
-`break``;`
-
-`}` `// switch( featureLevel )`
-
-`return` `""``;`
-
-`}`
+    template<>
+    std::string GetLatestProfile<ID3D11VertexShader>()
+    {
+        assert( g_d3dDevice );
+     
+        // Query the current feature level:
+        D3D_FEATURE_LEVEL featureLevel = g_d3dDevice->GetFeatureLevel();
+     
+        switch( featureLevel )
+        {
+        case D3D_FEATURE_LEVEL_11_1:
+        case D3D_FEATURE_LEVEL_11_0:
+            {
+                return "vs_5_0";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_10_1:
+            {
+                return "vs_4_1";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_10_0:
+            {
+                return "vs_4_0";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_9_3:
+            {
+                return "vs_4_0_level_9_3";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_9_2:
+        case D3D_FEATURE_LEVEL_9_1:
+            {
+                return "vs_4_0_level_9_1";
+            }
+            break;
+        } // switch( featureLevel )
+     
+        return "";
+    }
 
 This version of the template function returns the latest vertex shader profile that can be used to compile the vertex shader given the specific feature level supported by the end-user’s hardware.
 
@@ -4151,5 +4028,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1MzY4NDE4NCwtNzI1MTEzNzM4XX0=
+eyJoaXN0b3J5IjpbLTE1NTMwMTkzODcsMjA1MzY4NDE4NCwtNz
+I1MTEzNzM4XX0=
 -->
