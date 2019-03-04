@@ -719,57 +719,20 @@ The window instance is created using the  **CreateWindow**  function. This funct
 
 CreateWindow function
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-`HWND` `WINAPI CreateWindow(`
-
-`_In_opt_` `LPCTSTR` `lpClassName,`
-
-`_In_opt_` `LPCTSTR` `lpWindowName,`
-
-`_In_` `DWORD` `dwStyle,`
-
-`_In_` `int` `x,`
-
-`_In_` `int` `y,`
-
-`_In_` `int` `nWidth,`
-
-`_In_` `int` `nHeight,`
-
-`_In_opt_` `HWND` `hWndParent,`
-
-`_In_opt_` `HMENU` `hMenu,`
-
-`_In_opt_` `HINSTANCE` `hInstance,`
-
-`_In_opt_` `LPVOID` `lpParam`
-
-`);`
+    HWND WINAPI CreateWindow(
+      _In_opt_  LPCTSTR lpClassName,
+      _In_opt_  LPCTSTR lpWindowName,
+      _In_      DWORD dwStyle,
+      _In_      int x,
+      _In_      int y,
+      _In_      int nWidth,
+      _In_      int nHeight,
+      _In_opt_  HWND hWndParent,
+      _In_opt_  HMENU hMenu,
+      _In_opt_  HINSTANCE hInstance,
+      _In_opt_  LPVOID lpParam
+    );
 
 The  **_In_**,  **_Out_**,  **_Outptr_**,  **_Inout_**  etc. macros are part of Microsoft’s Source-code Annotation Language (SAL)  [[17]](https://www.3dgep.com/introduction-to-directx-11/#SAL)  and primarily used to describe how a function uses its prameters. Any annotation which includes  **_opt_**  indicates that the parameter is optional and can be  **NULL**.
 
@@ -5256,5 +5219,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyMjU3NDk2OV19
+eyJoaXN0b3J5IjpbMjAyMDQyNzcwLC00MjI1NzQ5NjldfQ==
 -->
