@@ -1842,51 +1842,18 @@ The  **LoadShader**  template function takes the file path to a HLSL shader file
 
 main.cpp
 
-648
-
-649
-
-650
-
-651
-
-652
-
-653
-
-654
-
-655
-
-656
-
-657
-
-658
-
-659
-
-`template``<` `class` `ShaderClass >`
-
-`ShaderClass* LoadShader(` `const` `std::wstring& fileName,` `const` `std::string& entryPoint,` `const` `std::string& _profile )`
-
-`{`
-
-`ID3DBlob* pShaderBlob = nullptr;`
-
-`ID3DBlob* pErrorBlob = nullptr;`
-
-`ShaderClass* pShader = nullptr;`
-
-`std::string profile = _profile;`
-
-`if` `( profile ==` `"latest"` `)`
-
-`{`
-
-`profile = GetLatestProfile<ShaderClass>();`
-
-`}`
+    template< class ShaderClass >
+    ShaderClass* LoadShader( const std::wstring& fileName, const std::string& entryPoint, const std::string& _profile )
+    {
+        ID3DBlob* pShaderBlob = nullptr;
+        ID3DBlob* pErrorBlob = nullptr;
+        ShaderClass* pShader = nullptr;
+     
+        std::string profile = _profile;
+        if ( profile == "latest" )
+        {
+            profile = GetLatestProfile<ShaderClass>();
+        }
 
 The  **LoadShader**  function accepts the profile to use to compile the shader but we can also use the special value  **“latest”**  profile value which specifies that the latest profile for the current feature level should be used.
 
@@ -3852,6 +3819,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDczNjM3NjksLTE1NTMwMTkzODcsMj
-A1MzY4NDE4NCwtNzI1MTEzNzM4XX0=
+eyJoaXN0b3J5IjpbMTQ5NTk4MzE2NSwtMTE0NzM2Mzc2OSwtMT
+U1MzAxOTM4NywyMDUzNjg0MTg0LC03MjUxMTM3MzhdfQ==
 -->
