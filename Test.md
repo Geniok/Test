@@ -1744,159 +1744,45 @@ And we will also provide a specialization for the pixel shader type.
 
 main.cpp
 
-580
-
-581
-
-582
-
-583
-
-584
-
-585
-
-586
-
-587
-
-588
-
-589
-
-590
-
-591
-
-592
-
-593
-
-594
-
-595
-
-596
-
-597
-
-598
-
-599
-
-600
-
-601
-
-602
-
-603
-
-604
-
-605
-
-606
-
-607
-
-608
-
-609
-
-610
-
-611
-
-612
-
-613
-
-614
-
-615
-
-616
-
-617
-
-618
-
-`template``<>`
-
-`std::string GetLatestProfile<ID3D11PixelShader>()`
-
-`{`
-
-`assert``( g_d3dDevice );`
-
-`// Query the current feature level:`
-
-`D3D_FEATURE_LEVEL featureLevel = g_d3dDevice->GetFeatureLevel();`
-
-`switch``( featureLevel )`
-
-`{`
-
-`case` `D3D_FEATURE_LEVEL_11_1:`
-
-`case` `D3D_FEATURE_LEVEL_11_0:`
-
-`{`
-
-`return` `"ps_5_0"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_10_1:`
-
-`{`
-
-`return` `"ps_4_1"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_10_0:`
-
-`{`
-
-`return` `"ps_4_0"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_9_3:`
-
-`{`
-
-`return` `"ps_4_0_level_9_3"``;`
-
-`}`
-
-`break``;`
-
-`case` `D3D_FEATURE_LEVEL_9_2:`
-
-`case` `D3D_FEATURE_LEVEL_9_1:`
-
-`{`
-
-`return` `"ps_4_0_level_9_1"``;`
-
-`}`
-
-`break``;`
-
-`}`
-
-`return` `""``;`
-
-`}`
+    template<>
+    std::string GetLatestProfile<ID3D11PixelShader>()
+    {
+        assert( g_d3dDevice );
+     
+        // Query the current feature level:
+        D3D_FEATURE_LEVEL featureLevel = g_d3dDevice->GetFeatureLevel();
+        switch( featureLevel )
+        {
+        case D3D_FEATURE_LEVEL_11_1:
+        case D3D_FEATURE_LEVEL_11_0:
+            {
+                return "ps_5_0";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_10_1:
+            {
+                return "ps_4_1";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_10_0:
+            {
+                return "ps_4_0";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_9_3:
+            {
+                return "ps_4_0_level_9_3";
+            }
+            break;
+        case D3D_FEATURE_LEVEL_9_2:
+        case D3D_FEATURE_LEVEL_9_1:
+            {
+                return "ps_4_0_level_9_1";
+            }
+            break;
+        }
+        return "";
+    }
 
 This version of the function returns the latest pixel shader profile that can be used to compile the pixel shader.
 
@@ -1910,13 +1796,8 @@ First we will define a template function that will create the shader object.
 
 main.cpp
 
-620
-
-621
-
-`template``<` `class` `ShaderClass >`
-
-`ShaderClass* CreateShader( ID3DBlob* pShaderBlob, ID3D11ClassLinkage* pClassLinkage );`
+    template< class ShaderClass >
+    ShaderClass* CreateShader( ID3DBlob* pShaderBlob, ID3D11ClassLinkage* pClassLinkage );
 
 The  **CreateShader**  template function takes a binary object and the class linkage object and creates the appropriate shader object.
 
@@ -1924,46 +1805,17 @@ First let’s specialize this template function on the  [ID3D11VertexShader](htt
 
 main.cpp
 
-623
-
-624
-
-625
-
-626
-
-627
-
-628
-
-629
-
-630
-
-631
-
-632
-
-633
-
-`template``<>`
-
-`ID3D11VertexShader* CreateShader<ID3D11VertexShader>( ID3DBlob* pShaderBlob, ID3D11ClassLinkage* pClassLinkage )`
-
-`{`
-
-`assert``( g_d3dDevice );`
-
-`assert``( pShaderBlob );`
-
-`ID3D11VertexShader* pVertexShader = nullptr;`
-
-`g_d3dDevice->CreateVertexShader( pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pClassLinkage, &pVertexShader );`
-
-`return` `pVertexShader;`
-
-`}`
-
+    template<>
+    ID3D11VertexShader* CreateShader<ID3D11VertexShader>( ID3DBlob* pShaderBlob, ID3D11ClassLinkage* pClassLinkage )
+    {
+        assert( g_d3dDevice );
+        assert( pShaderBlob );
+     
+        ID3D11VertexShader* pVertexShader = nullptr;
+        g_d3dDevice->CreateVertexShader( pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pClassLinkage, &pVertexShader );
+     
+        return pVertexShader;
+    }
 This function uses the  [ID3D11Device::CreateVertexShader](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476524(v=vs.85).aspx "ID3D11Device::CreateVertexShader method")  method to create the vertex shader object.
 
 Next, we’ll specialize on the  [ID3D11PixelShader](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476576(v=vs.85).aspx "ID3D11PixelShader interface")  shader type.
@@ -4028,6 +3880,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTMwMTkzODcsMjA1MzY4NDE4NCwtNz
-I1MTEzNzM4XX0=
+eyJoaXN0b3J5IjpbMTcxOTg1MDIzNiwtMTU1MzAxOTM4NywyMD
+UzNjg0MTg0LC03MjUxMTM3MzhdfQ==
 -->
