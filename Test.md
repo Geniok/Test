@@ -395,27 +395,16 @@ This set of statements will cause the library dependencies to be automatically l
 
 DirectXTemplatePCH.h
 
-    enter code here
-
-`// Safely release a COM object.`
-
-`template``<``typename` `T>`
-
-`inline` `void SafeRelease( T& ptr )`
-
-`{`
-
-`if` `( ptr != NULL )`
-
-`{`
-
-`ptr->Release();`
-
-`ptr = NULL;`
-
-`}`
-
-`}`
+    // Safely release a COM object.
+    template <typename T>
+    inline void SafeRelease( T& ptr )
+    {
+	    if (ptr != NULL)
+	    {
+		    ptr->Release();
+		    ptr = NULL;
+	    }
+	}
 
 The  **SafeRelease**  function can be used to safely release a COM object and set the COM pointer to NULL. This function allows us to safely release a COM object even if it has already been released before. Since we will be releasing COM objects a lot in this application, this function will also allow us to create neater code.
 
@@ -5646,5 +5635,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDkyNzIxMTQsMTgxMDk1MDY4MF19
+eyJoaXN0b3J5IjpbLTk5NzE5OTA4NywxODEwOTUwNjgwXX0=
 -->
