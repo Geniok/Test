@@ -383,17 +383,9 @@ The next set of headers includes the Direct3D API. The  **d3dcompiler**  header 
 
 DirectXTemplatePCH.h
 
-14
+`// Link library dependencies
+`
 
-15
-
-16
-
-17
-
-18
-
-`// Link library dependencies`
 
 `#pragma comment(lib, "d3d11.lib")`
 
@@ -5676,5 +5668,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxMDk1MDY4MF19
+eyJoaXN0b3J5IjpbLTUyOTc4NzczLDE4MTA5NTA2ODBdfQ==
 -->
