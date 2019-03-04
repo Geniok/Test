@@ -764,29 +764,13 @@ The windows procedure callback function has the following signature  [[52]](http
 
 WindowProc callback function
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-`LRESULT` `CALLBACK WindowProc(`
-
-`_In_` `HWND` `hwnd,`
-
-`_In_` `UINT` `uMsg,`
-
-`_In_` `WPARAM` `wParam,`
-
-`_In_` `LPARAM` `lParam`
-
-`);`
+    LRESULT CALLBACK WindowProc(
+      _In_  HWND hwnd,
+      _In_  UINT uMsg,
+      _In_  WPARAM wParam,
+      _In_  LPARAM lParam
+    );
 
 Where:
 
@@ -801,97 +785,31 @@ For this demo, we will implement a minimum message handling function that only r
 
 main.cpp
 
-780
 
-781
-
-782
-
-783
-
-784
-
-785
-
-786
-
-787
-
-788
-
-789
-
-790
-
-791
-
-792
-
-793
-
-794
-
-795
-
-796
-
-797
-
-798
-
-799
-
-800
-
-801
-
-802
-
-803
-
-`LRESULT` `CALLBACK WndProc (``HWND` `hwnd,` `UINT` `message,` `WPARAM` `wParam,` `LPARAM` `lParam)`
-
-`{`
-
-`PAINTSTRUCT paintStruct;`
-
-`HDC` `hDC;`
-
-`switch` `( message )`
-
-`{`
-
-`case` `WM_PAINT:`
-
-`{`
-
-`hDC = BeginPaint( hwnd, &paintStruct );`
-
-`EndPaint( hwnd, &paintStruct );`
-
-`}`
-
-`break``;`
-
-`case` `WM_DESTROY:`
-
-`{`
-
-`PostQuitMessage( 0 );`
-
-`}`
-
-`break``;`
-
-`default``:`
-
-`return` `DefWindowProc( hwnd, message, wParam, lParam );`
-
-`}`
-
-`return` `0;`
-
-`}`
+    LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        PAINTSTRUCT paintStruct;
+        HDC hDC;
+     
+        switch ( message )
+        {
+        case WM_PAINT:
+            {
+                hDC = BeginPaint( hwnd, &paintStruct );
+                EndPaint( hwnd, &paintStruct );
+            }
+            break;
+        case WM_DESTROY:
+            {
+                PostQuitMessage( 0 );
+            }
+            break;
+        default: 
+            return DefWindowProc( hwnd, message, wParam, lParam );
+        }
+     
+        return 0;
+    }
 
 At a minimum, the window procedure must respond to the  [WM_PAINT](https://msdn.microsoft.com/en-us/library/windows/desktop/dd145213(v=vs.85).aspx "WM_PAINT message")  window message. We don’t actually do any rendering with this message except erase the window’s background contents using the window class’s background brush (**hbrBackground**  variable of the  [WNDCLASSEX](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633577(v=vs.85).aspx "WNDCLASSEX structure")  structure).
 
@@ -5219,5 +5137,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyMDQyNzcwLC00MjI1NzQ5NjldfQ==
+eyJoaXN0b3J5IjpbMTUyOTg0NTMwNSwtNDIyNTc0OTY5XX0=
 -->
