@@ -1861,133 +1861,44 @@ The next step is to compile the HLSL shader into a Binary Large Object (BLOB) us
 
 main.cpp
 
-661
-
-662
-
-663
-
-664
-
-665
-
-666
-
-667
-
-668
-
-669
-
-670
-
-671
-
-672
-
-673
-
-674
-
-675
-
-676
-
-677
-
-678
-
-679
-
-680
-
-681
-
-682
-
-`UINT` `flags = D3DCOMPILE_ENABLE_STRICTNESS;`
-
-`#if _DEBUG`
-
-`flags |= D3DCOMPILE_DEBUG;`
-
-`#endif`
-
-`HRESULT` `hr = D3DCompileFromFile( fileName.c_str(), nullptr,`
-
-`D3D_COMPILE_STANDARD_FILE_INCLUDE, entryPoint.c_str(), profile.c_str(),`
-
-`flags, 0, &pShaderBlob, &pErrorBlob );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`if` `( pErrorBlob )`
-
-`{`
-
-`std::string errorMessage = (``char``*)pErrorBlob->GetBufferPointer();`
-
-`OutputDebugStringA( errorMessage.c_str() );`
-
-`SafeRelease(pShaderBlob);`
-
-`SafeRelease(pErrorBlob);`
-
-`}`
-
-`return` `false``;`
-
-`}`
+    UINT flags = D3DCOMPILE_ENABLE_STRICTNESS;
+    #if _DEBUG
+        flags |= D3DCOMPILE_DEBUG;
+    #endif
+     
+        HRESULT hr = D3DCompileFromFile( fileName.c_str(), nullptr, 
+            D3D_COMPILE_STANDARD_FILE_INCLUDE, entryPoint.c_str(), profile.c_str(), 
+            flags, 0, &pShaderBlob, &pErrorBlob );
+     
+        if ( FAILED( hr ) )
+        {
+            if ( pErrorBlob )
+            {
+                std::string errorMessage = (char*)pErrorBlob->GetBufferPointer();
+                OutputDebugStringA( errorMessage.c_str() );
+     
+                SafeRelease(pShaderBlob);
+                SafeRelease(pErrorBlob);
+            }
+     
+            return false;
+        }
 
 The  **D3DCompileFromFile**  function has the following signature  [[44]](https://www.3dgep.com/introduction-to-directx-11/#D3DCompileFromFile):
 
 D3DCompileFromFile function
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-`HRESULT` `WINAPI D3DCompileFromFile(`
-
-`in` `LPCWSTR` `pFileName,`
-
-`in_opt` `const` `D3D_SHADER_MACRO *pDefines,`
-
-`in_opt ID3DInclude *pInclude,`
-
-`in` `LPCSTR` `pEntrypoint,`
-
-`in` `LPCSTR` `pTarget,`
-
-`in` `UINT` `Flags1,`
-
-`in` `UINT` `Flags2,`
-
-`out ID3DBlob **ppCode,`
-
-`out_opt ID3DBlob **ppErrorMsgs`
-
-`);`
+    HRESULT WINAPI D3DCompileFromFile(
+      in       LPCWSTR pFileName,
+      in_opt   const D3D_SHADER_MACRO *pDefines,
+      in_opt   ID3DInclude *pInclude,
+      in       LPCSTR pEntrypoint,
+      in       LPCSTR pTarget,
+      in       UINT Flags1,
+      in       UINT Flags2,
+      out      ID3DBlob **ppCode,
+      out_opt  ID3DBlob **ppErrorMsgs
+    );
 
 Where:
 
@@ -3819,6 +3730,7 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ5NTk4MzE2NSwtMTE0NzM2Mzc2OSwtMT
-U1MzAxOTM4NywyMDUzNjg0MTg0LC03MjUxMTM3MzhdfQ==
+eyJoaXN0b3J5IjpbLTk3NDQ1OTkxMiwxNDk1OTgzMTY1LC0xMT
+Q3MzYzNzY5LC0xNTUzMDE5Mzg3LDIwNTM2ODQxODQsLTcyNTEx
+MzczOF19
 -->
