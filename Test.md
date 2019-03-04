@@ -478,35 +478,14 @@ The next set of variables that will be declared are specific to this demo and no
 
 main.cpp
 
-30
-
-31
-
-32
-
-33
-
-34
-
-35
-
-36
-
-37
-
-`// Vertex buffer data`
-
-`ID3D11InputLayout* g_d3dInputLayout = nullptr;`
-
-`ID3D11Buffer* g_d3dVertexBuffer = nullptr;`
-
-`ID3D11Buffer* g_d3dIndexBuffer = nullptr;`
-
-`// Shader data`
-
-`ID3D11VertexShader* g_d3dVertexShader = nullptr;`
-
-`ID3D11PixelShader* g_d3dPixelShader = nullptr;`
+    // Vertex buffer data
+    ID3D11InputLayout* g_d3dInputLayout = nullptr;
+    ID3D11Buffer* g_d3dVertexBuffer = nullptr;
+    ID3D11Buffer* g_d3dIndexBuffer = nullptr;
+ 
+    // Shader data
+    ID3D11VertexShader* g_d3dVertexShader = nullptr;
+    ID3D11PixelShader* g_d3dPixelShader = nullptr;
 
 The  **g_d3dInputLayout**  variable will be used to describe the order and type of data that is expected by the vertex shader.
 
@@ -5565,6 +5544,6 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MDYwMDc1MTYsOTAxMTIyMTM4LDE4MT
-A5NTA2ODBdfQ==
+eyJoaXN0b3J5IjpbLTMzNjM5MDQ2NiwtMTYwNjAwNzUxNiw5MD
+ExMjIxMzgsMTgxMDk1MDY4MF19
 -->
