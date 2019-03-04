@@ -2110,17 +2110,10 @@ We can use the  [LoadShader](https://www.3dgep.com/introduction-to-directx-11/#L
 
 main.cpp
 
-455
 
-456
-
-457
-
-`// Load the shaders`
-
-`g_d3dVertexShader = LoadShader<ID3D11VertexShader>( L``"../data/shaders/SimpleVertexShader.hlsl"``,` `"SimpleVertexShader"``,` `"latest"` `);`
-
-`g_d3dPixelShader = LoadShader<ID3D11PixelShader>( L``"../data/shaders/SimplePixelShader.hlsl"``,` `"SimplePixelShader"``,` `"latest"` `);`
+    // Load the shaders
+    g_d3dVertexShader = LoadShader<ID3D11VertexShader>( L"../data/shaders/SimpleVertexShader.hlsl", "SimpleVertexShader", "latest" );
+    g_d3dPixelShader = LoadShader<ID3D11PixelShader>( L"../data/shaders/SimplePixelShader.hlsl", "SimplePixelShader", "latest" );
 
 #### Load a Precompiled Shader Object
 
@@ -2128,77 +2121,26 @@ If we want to load a precompiled shader object, we can use the  [D3DReadFileToBl
 
 main.cpp
 
-459
 
-460
-
-461
-
-462
-
-463
-
-464
-
-465
-
-466
-
-467
-
-468
-
-469
-
-470
-
-471
-
-472
-
-473
-
-474
-
-475
-
-476
-
-477
-
-`// Load the compiled vertex shader.`
-
-`ID3DBlob* vertexShaderBlob;`
-
-`#if _DEBUG`
-
-`LPCWSTR` `compiledVertexShaderObject = L``"SimpleVertexShader_d.cso"``;`
-
-`#else`
-
-`LPCWSTR` `compiledVertexShaderObject = L``"SimpleVertexShader.cso"``;`
-
-`#endif`
-
-`hr = D3DReadFileToBlob( compiledVertexShaderObject, &vertexShaderBlob );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`hr = g_d3dDevice->CreateVertexShader( vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), nullptr, &g_d3dVertexShader );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
+    // Load the compiled vertex shader.
+        ID3DBlob* vertexShaderBlob;
+    #if _DEBUG
+        LPCWSTR compiledVertexShaderObject = L"SimpleVertexShader_d.cso";
+    #else
+        LPCWSTR compiledVertexShaderObject = L"SimpleVertexShader.cso";
+    #endif
+     
+        hr = D3DReadFileToBlob( compiledVertexShaderObject, &vertexShaderBlob );
+        if ( FAILED(hr) )
+        {
+            return false;
+        }
+     
+        hr = g_d3dDevice->CreateVertexShader( vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), nullptr, &g_d3dVertexShader );
+        if ( FAILED( hr ) )
+        {
+            return false;
+        }
 
 How to create the compiled shader object (.cso) was explained in the  [Precompiled Shaders](https://www.3dgep.com/introduction-to-directx-11/#Precompiled_Shaders)  section of this article.
 
@@ -2208,47 +2150,18 @@ And the final method which is probably the easiest and most portable way to load
 
 main.cpp
 
-482
 
-483
-
-484
-
-485
-
-486
-
-487
-
-488
-
-489
-
-490
-
-491
-
-492
-
-`hr = g_d3dDevice->CreateVertexShader( g_SimpleVertexShader,` `sizeof``(g_SimpleVertexShader), nullptr, &g_d3dVertexShader );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
-
-`hr = g_d3dDevice->CreatePixelShader( g_SimplePixelShader,` `sizeof``(g_SimplePixelShader), nullptr, &g_d3dPixelShader );`
-
-`if` `( FAILED( hr ) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
+    hr = g_d3dDevice->CreateVertexShader( g_SimpleVertexShader, sizeof(g_SimpleVertexShader), nullptr, &g_d3dVertexShader );
+    if ( FAILED( hr ) )
+    {
+        return false;
+    }
+     
+    hr = g_d3dDevice->CreatePixelShader( g_SimplePixelShader, sizeof(g_SimplePixelShader), nullptr, &g_d3dPixelShader );
+    if ( FAILED( hr ) )
+    {
+        return false;
+    }
 
 Now that we have seen multiple methods for loading a shader, we need to define an  [ID3D11InputLayout](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476575(v=vs.85).aspx "ID3D11InputLayout interface")  interface object which maps the vertex buffer elements to the varying vertex attributes in the vertex shader.
 
@@ -2258,33 +2171,14 @@ The  [ID3D11InputLayout](https://msdn.microsoft.com/en-us/library/windows/deskto
 
 ID3D11Device::CreateInputLayout method
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-`HRESULT` `CreateInputLayout(`
-
-`[in]` `const` `D3D11_INPUT_ELEMENT_DESC *pInputElementDescs,`
-
-`[in]` `UINT` `NumElements,`
-
-`[in]` `const` `void *pShaderBytecodeWithInputSignature,`
-
-`[in]` `SIZE_T` `BytecodeLength,`
-
-`[out] ID3D11InputLayout **ppInputLayout`
-
-`);`
+    HRESULT CreateInputLayout(
+      [in]   const D3D11_INPUT_ELEMENT_DESC *pInputElementDescs,
+      [in]   UINT NumElements,
+      [in]   const void *pShaderBytecodeWithInputSignature,
+      [in]   SIZE_T BytecodeLength,
+      [out]  ID3D11InputLayout **ppInputLayout
+    );
 
 Where:
 
@@ -3501,7 +3395,7 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzA1MDAyNSwxNDk1OTgzMTY1LC0xMT
-Q3MzYzNzY5LC0xNTUzMDE5Mzg3LDIwNTM2ODQxODQsLTcyNTEx
-MzczOF19
+eyJoaXN0b3J5IjpbLTE0Mzk4NjUyNDksMTQ5NTk4MzE2NSwtMT
+E0NzM2Mzc2OSwtMTU1MzAxOTM4NywyMDUzNjg0MTg0LC03MjUx
+MTM3MzhdfQ==
 -->
