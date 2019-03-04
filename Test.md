@@ -1541,57 +1541,21 @@ The input to the vertex shader is the object-space vertex position and any other
 
 SimpleVertexShader.hlsl
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-`cbuffer PerApplication :` `register``( b0 )`
-
-`{`
-
-`matrix projectionMatrix;`
-
-`}`
-
-`cbuffer PerFrame :` `register``( b1 )`
-
-`{`
-
-`matrix viewMatrix;`
-
-`}`
-
-`cbuffer PerObject :` `register``( b2 )`
-
-`{`
-
-`matrix worldMatrix;`
-
-`}`
+    cbuffer PerApplication : register( b0 )
+    {
+        matrix projectionMatrix;
+    }
+     
+    cbuffer PerFrame : register( b1 )
+    {
+        matrix viewMatrix;
+    }
+     
+    cbuffer PerObject : register( b2 )
+    {
+        matrix worldMatrix;
+    }
 
 First we declare three constant buffers using the  **cbuffer**  type. Each constant buffer is assigned to constant buffer registers by supplying the  **b**  register type. Explicitly assigning the constant buffer registers in this way is optional as the shader compiler will do this anyways if we don’t explicitly assign the registers but doing this provides more control over the placement of the buffers.
 
@@ -1601,25 +1565,12 @@ Next we need to define a set of variables that will be passed from the applicati
 
 SimpleVertexShader.hlsl
 
-16
 
-17
-
-18
-
-19
-
-20
-
-`struct` `AppData`
-
-`{`
-
-`float3 position : POSITION;`
-
-`float3 color: COLOR;`
-
-`};`
+    struct AppData
+    {
+        float3 position : POSITION;
+        float3 color: COLOR;
+    };
 
 The  **AppData**  struct is used to encapsulate all of the vertex attributes that are sent from the application (the code to map vertex attributes from the application to varying shader variables will be shown later). These are the varying input variables to the vertex shader.
 
@@ -4263,5 +4214,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcyNTExMzczOF19
+eyJoaXN0b3J5IjpbLTEyMjE5NTkxMTIsLTcyNTExMzczOF19
 -->
