@@ -1918,29 +1918,14 @@ At this point we only have the shader blob but we still need to create a shader 
 
 main.cpp
 
-684
 
-685
-
-686
-
-687
-
-688
-
-689
-
-690
-
-`pShader = CreateShader<ShaderClass>( pShaderBlob, nullptr );`
-
-`SafeRelease( pShaderBlob );`
-
-`SafeRelease( pErrorBlob );`
-
-`return` `pShader;`
-
-`}`
+        pShader = CreateShader<ShaderClass>( pShaderBlob, nullptr );
+     
+        SafeRelease( pShaderBlob );
+        SafeRelease( pErrorBlob );
+     
+        return pShader;
+    }
 
 The compiled shader object is now ready for use by the rendering pipeline.
 
@@ -1958,87 +1943,30 @@ In the  **LoadContent**  function, we’ll create two buffers. The first buffer 
 
 main.cpp
 
-390
 
-391
-
-392
-
-393
-
-394
-
-395
-
-396
-
-397
-
-398
-
-399
-
-400
-
-401
-
-402
-
-403
-
-404
-
-405
-
-406
-
-407
-
-408
-
-409
-
-410
-
-411
-
-412
-
-`bool` `LoadContent()`
-
-`{`
-
-`assert``( g_d3dDevice );`
-
-`// Create an initialize the vertex buffer.`
-
-`D3D11_BUFFER_DESC vertexBufferDesc;`
-
-`ZeroMemory( &vertexBufferDesc,` `sizeof``(D3D11_BUFFER_DESC) );`
-
-`vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;`
-
-`vertexBufferDesc.ByteWidth =` `sizeof``( VertexPosColor ) * _countof(g_Vertices);`
-
-`vertexBufferDesc.CPUAccessFlags = 0;`
-
-`vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;`
-
-`D3D11_SUBRESOURCE_DATA resourceData;`
-
-`ZeroMemory( &resourceData,` `sizeof``(D3D11_SUBRESOURCE_DATA) );`
-
-`resourceData.pSysMem = g_Vertices;`
-
-`HRESULT` `hr = g_d3dDevice->CreateBuffer( &vertexBufferDesc, &resourceData, &g_d3dVertexBuffer );`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `false``;`
-
-`}`
+    bool LoadContent()
+    {
+        assert( g_d3dDevice );
+     
+        // Create an initialize the vertex buffer.
+        D3D11_BUFFER_DESC vertexBufferDesc;
+        ZeroMemory( &vertexBufferDesc, sizeof(D3D11_BUFFER_DESC) );
+     
+        vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+        vertexBufferDesc.ByteWidth = sizeof( VertexPosColor ) * _countof(g_Vertices);
+        vertexBufferDesc.CPUAccessFlags = 0;
+        vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+     
+        D3D11_SUBRESOURCE_DATA resourceData;
+        ZeroMemory( &resourceData, sizeof(D3D11_SUBRESOURCE_DATA) );
+     
+        resourceData.pSysMem = g_Vertices;
+     
+        HRESULT hr = g_d3dDevice->CreateBuffer( &vertexBufferDesc, &resourceData, &g_d3dVertexBuffer );
+        if ( FAILED(hr) )
+        {
+            return false;
+        }
 
 To create a buffer we need two things; a  [D3D11_BUFFER_DESC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476092(v=vs.85).aspx "D3D11_BUFFER_DESC structure")  structure that describes the buffer we are creating and a  [D3D11_SUBRESOURCE_DATA](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476220(v=vs.85).aspx "D3D11_SUBRESOURCE_DATA structure")  structure that defines the data to initialize the buffer with.
 
@@ -2046,38 +1974,14 @@ The  [D3D11_BUFFER_DESC](https://msdn.microsoft.com/en-us/library/windows/deskto
 
 D3D11_BUFFER_DESC structure
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-`typedef` `struct` `D3D11_BUFFER_DESC {`
-
-`UINT` `ByteWidth;`
-
-`D3D11_USAGE Usage;`
-
-`UINT` `BindFlags;`
-
-`UINT` `CPUAccessFlags;`
-
-`UINT` `MiscFlags;`
-
-`UINT` `StructureByteStride;`
-
-`} D3D11_BUFFER_DESC;`
-
+    typedef struct D3D11_BUFFER_DESC {
+      UINT        ByteWidth;
+      D3D11_USAGE Usage;
+      UINT        BindFlags;
+      UINT        CPUAccessFlags;
+      UINT        MiscFlags;
+      UINT        StructureByteStride;
+    } D3D11_BUFFER_DESC;
 Where:
 
 -   **UINT ByteWidth**: The size of the buffer in bytes.
@@ -2093,25 +1997,11 @@ The  [D3D11_SUBRESOURCE_DATA](https://msdn.microsoft.com/en-us/library/windows/d
 
 D3D11_SUBRESOURCE_DATA structure
 
-1
-
-2
-
-3
-
-4
-
-5
-
-`typedef` `struct` `D3D11_SUBRESOURCE_DATA {`
-
-`const` `void *pSysMem;`
-
-`UINT` `SysMemPitch;`
-
-`UINT` `SysMemSlicePitch;`
-
-`} D3D11_SUBRESOURCE_DATA;`
+    typedef struct D3D11_SUBRESOURCE_DATA {
+      const void *pSysMem;
+      UINT       SysMemPitch;
+      UINT       SysMemSlicePitch;
+    } D3D11_SUBRESOURCE_DATA;
 
 Where:
 
@@ -3730,7 +3620,7 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3NDQ1OTkxMiwxNDk1OTgzMTY1LC0xMT
+eyJoaXN0b3J5IjpbLTcxNTk2NDIzMSwxNDk1OTgzMTY1LC0xMT
 Q3MzYzNzY5LC0xNTUzMDE5Mzg3LDIwNTM2ODQxODQsLTcyNTEx
 MzczOF19
 -->
