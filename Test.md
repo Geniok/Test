@@ -1438,43 +1438,17 @@ To configure the viewport, we need to know the width and height of the client ar
 
 main.cpp
 
-379
 
-380
-
-381
-
-382
-
-383
-
-384
-
-385
-
-386
-
-387
-
-388
-
-`// Initialize the viewport to occupy the entire client area.`
-
-`g_Viewport.Width =` `static_cast``<``float``>(clientWidth);`
-
-`g_Viewport.Height =` `static_cast``<``float``>(clientHeight);`
-
-`g_Viewport.TopLeftX = 0.0f;`
-
-`g_Viewport.TopLeftY = 0.0f;`
-
-`g_Viewport.MinDepth = 0.0f;`
-
-`g_Viewport.MaxDepth = 1.0f;`
-
-`return` `0;`
-
-`}`
+        // Initialize the viewport to occupy the entire client area.
+        g_Viewport.Width = static_cast<float>(clientWidth);
+        g_Viewport.Height = static_cast<float>(clientHeight);
+        g_Viewport.TopLeftX = 0.0f;
+        g_Viewport.TopLeftY = 0.0f;
+        g_Viewport.MinDepth = 0.0f;
+        g_Viewport.MaxDepth = 1.0f;
+     
+        return 0;
+    }
 
 The  **g_Viewport**  global variable is of type  **D3D11_VIEWPORT**. This structure has the following members  [[41]](https://www.3dgep.com/introduction-to-directx-11/#D3D11_VIEWPORT):
 
@@ -4385,5 +4359,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjY4MzU2NDA0XX0=
+eyJoaXN0b3J5IjpbNzYwMDQ2MzE2LDI2ODM1NjQwNF19
 -->
