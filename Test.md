@@ -2549,13 +2549,8 @@ The final step in the render function is to present the swap chain’s back buff
 
 main.cpp
 
-869
-
-870
-
-`Present( g_EnableVSync );`
-
-`}`
+        Present( g_EnableVSync );
+    }
 
 ## Cleanup
 
@@ -2567,50 +2562,17 @@ The  **UnloadContent**  function is used for releasing the resources that were a
 
 main.cpp
 
-693
-
-694
-
-695
-
-696
-
-697
-
-698
-
-699
-
-700
-
-701
-
-702
-
-703
-
-`void UnloadContent()`
-
-`{`
-
-`SafeRelease(g_d3dConstantBuffers[CB_Appliation]);`
-
-`SafeRelease(g_d3dConstantBuffers[CB_Frame]);`
-
-`SafeRelease(g_d3dConstantBuffers[CB_Object]);`
-
-`SafeRelease(g_d3dIndexBuffer);`
-
-`SafeRelease(g_d3dVertexBuffer);`
-
-`SafeRelease(g_d3dInputLayout);`
-
-`SafeRelease(g_d3dVertexShader);`
-
-`SafeRelease(g_d3dPixelShader);`
-
-`}`
-
+    void UnloadContent()
+    {
+        SafeRelease(g_d3dConstantBuffers[CB_Appliation]);
+        SafeRelease(g_d3dConstantBuffers[CB_Frame]);
+        SafeRelease(g_d3dConstantBuffers[CB_Object]);
+        SafeRelease(g_d3dIndexBuffer);
+        SafeRelease(g_d3dVertexBuffer);
+        SafeRelease(g_d3dInputLayout);
+        SafeRelease(g_d3dVertexShader);
+        SafeRelease(g_d3dPixelShader);
+    }
 Since all of the resources we allocated are all COM objects, we can use the  **SafeRelease**  method to release the reference count of the COM objects. If the COM object’s reference count reaches 0, it will be automatically deleted by the system.
 
 ### CLEANUP
@@ -2619,49 +2581,17 @@ We should also not forget to cleanup the references to the resources allocated i
 
 main.cpp
 
-872
-
-873
-
-874
-
-875
-
-876
-
-877
-
-878
-
-879
-
-880
-
-881
-
-882
-
-`void Cleanup()`
-
-`{`
-
-`SafeRelease( g_d3dDepthStencilView );`
-
-`SafeRelease( g_d3dRenderTargetView );`
-
-`SafeRelease( g_d3dDepthStencilBuffer );`
-
-`SafeRelease( g_d3dDepthStencilState );`
-
-`SafeRelease( g_d3dRasterizerState );`
-
-`SafeRelease( g_d3dSwapChain );`
-
-`SafeRelease( g_d3dDeviceContext );`
-
-`SafeRelease( g_d3dDevice );`
-
-`}`
+    void Cleanup()
+    {
+        SafeRelease( g_d3dDepthStencilView );
+        SafeRelease( g_d3dRenderTargetView );
+        SafeRelease( g_d3dDepthStencilBuffer );
+        SafeRelease( g_d3dDepthStencilState );
+        SafeRelease( g_d3dRasterizerState );
+        SafeRelease( g_d3dSwapChain );
+        SafeRelease( g_d3dDeviceContext );
+        SafeRelease( g_d3dDevice );
+    }
 
 Now that we have defined all of the necessary functions let’s complete the main function.
 
@@ -2671,135 +2601,41 @@ At this point we should update the  **Run**  to call the  **Update**  and  **Ren
 
 main.cpp
 
-705
-
-706
-
-707
-
-708
-
-709
-
-710
-
-711
-
-712
-
-713
-
-714
-
-715
-
-716
-
-717
-
-718
-
-719
-
-720
-
-721
-
-722
-
-723
-
-724
-
-725
-
-726
-
-727
-
-728
-
-729
-
-730
-
-731
-
-732
-
-733
-
-734
-
-735
-
-736
-
-737
-
-738
-
-739
-
-`/**`
-
-`* The main application loop.`
-
-`*/`
-
-`int` `Run()`
-
-`{`
-
-`MSG msg = {0};`
-
-`static` `DWORD` `previousTime = timeGetTime();`
-
-`static` `const` `float` `targetFramerate = 30.0f;`
-
-`static` `const` `float` `maxTimeStep = 1.0f / targetFramerate;`
-
-`while` `( msg.message != WM_QUIT )`
-
-`{`
-
-`if` `( PeekMessage( &msg, 0, 0, 0, PM_REMOVE ) )`
-
-`{`
-
-`TranslateMessage( &msg );`
-
-`DispatchMessage( &msg );`
-
-`}`
-
-`else`
-
-`{`
-
-`DWORD` `currentTime = timeGetTime();`
-
-`float` `deltaTime = ( currentTime - previousTime ) / 1000.0f;`
-
-`previousTime = currentTime;`
-
-`// Cap the delta time to the max time step (useful if your`
-
-`// debugging and you don't want the deltaTime value to explode.`
-
-`deltaTime = std::min<``float``>(deltaTime, maxTimeStep);`
-
-`Update( deltaTime );`
-
-`Render();`
-
-`}`
-
-`}`
-
-`return` `static_cast``<``int``>(msg.wParam);`
-
-`}`
+    /**
+     * The main application loop.
+     */
+    int Run()
+    {
+        MSG msg = {0};
+     
+        static DWORD previousTime = timeGetTime();
+        static const float targetFramerate = 30.0f;
+        static const float maxTimeStep = 1.0f / targetFramerate;
+     
+        while ( msg.message != WM_QUIT )
+        {
+            if ( PeekMessage( &msg, 0, 0, 0, PM_REMOVE ) )
+            {
+                TranslateMessage( &msg );
+                DispatchMessage( &msg );
+            }
+            else
+            {
+                DWORD currentTime = timeGetTime();
+                float deltaTime = ( currentTime - previousTime ) / 1000.0f;
+                previousTime = currentTime;
+     
+                // Cap the delta time to the max time step (useful if your 
+                // debugging and you don't want the deltaTime value to explode.
+                deltaTime = std::min<float>(deltaTime, maxTimeStep);
+     
+                Update( deltaTime );
+                Render();
+            }
+        }
+     
+        return static_cast<int>(msg.wParam);
+    }
 
 This function is identical to the  **Run**  function shown in the section titled  [The Run Method](https://www.3dgep.com/introduction-to-directx-11/#The_Run_Method "The Run Method")except now we can compile the application with the  **Update**  and  **Render**  functions uncommented.
 
@@ -3077,5 +2913,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzIyMDgyOTYsLTE2NDMyNzUzOV19
+eyJoaXN0b3J5IjpbMTQwMzI4NTg2MSwtMTY0MzI3NTM5XX0=
 -->
