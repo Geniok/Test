@@ -2359,29 +2359,12 @@ Before we can start rendering a new frame, we must clear the old contents of the
 
 main.cpp
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-`// Clear the color and depth buffers.`
-
-`void Clear(` `const` `FLOAT` `clearColor[4],` `FLOAT` `clearDepth, UINT8 clearStencil )`
-
-`{`
-
-`g_d3dDeviceContext->ClearRenderTargetView( g_d3dRenderTargetView, clearColor );`
-
-`g_d3dDeviceContext->ClearDepthStencilView( g_d3dDepthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, clearDepth, clearStencil );`
-
-`}`
+    // Clear the color and depth buffers.
+    void Clear( const FLOAT clearColor[4], FLOAT clearDepth, UINT8 clearStencil )
+    {
+        g_d3dDeviceContext->ClearRenderTargetView( g_d3dRenderTargetView, clearColor );
+        g_d3dDeviceContext->ClearDepthStencilView( g_d3dDepthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, clearDepth, clearStencil );
+    }
 
 The  [ID3D11DeviceContext::ClearRenderTargetView](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476388(v=vs.85).aspx "ID3D11DeviceContext::ClearRenderTargetView method")  method is used to clear the back buffer to a particlular color and the  [ID3D11DeviceContext::ClearDepthStencilView](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476387(v=vs.85).aspx "ID3D11DeviceContext::ClearDepthStencilView method")method is used to clear the depth and stencil buffer to a particular depth value and stencil value.
 
@@ -3178,5 +3161,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NDMyNzUzOV19
+eyJoaXN0b3J5IjpbLTg3ODAyMDY2NiwtMTY0MzI3NTM5XX0=
 -->
