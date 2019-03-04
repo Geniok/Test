@@ -968,45 +968,17 @@ The  **DXGI_SWAP_CHAIN_DESC**  has the following definition  [[19]](https://www.
 
 DXGI_SWAP_CHAIN_DESC structure
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-`typedef` `struct` `DXGI_SWAP_CHAIN_DESC {`
-
-`DXGI_MODE_DESC BufferDesc;`
-
-`DXGI_SAMPLE_DESC SampleDesc;`
-
-`DXGI_USAGE BufferUsage;`
-
-`UINT` `BufferCount;`
-
-`HWND` `OutputWindow;`
-
-`BOOL` `Windowed;`
-
-`DXGI_SWAP_EFFECT SwapEffect;`
-
-`UINT` `Flags;`
-
-`} DXGI_SWAP_CHAIN_DESC;`
+    typedef struct DXGI_SWAP_CHAIN_DESC {
+      DXGI_MODE_DESC   BufferDesc;
+      DXGI_SAMPLE_DESC SampleDesc;
+      DXGI_USAGE       BufferUsage;
+      UINT             BufferCount;
+      HWND             OutputWindow;
+      BOOL             Windowed;
+      DXGI_SWAP_EFFECT SwapEffect;
+      UINT             Flags;
+    } DXGI_SWAP_CHAIN_DESC;
 
 The members of the  **DXGI_SWAP_CHAIN_DESC**  struct are defined as:
 
@@ -1048,99 +1020,32 @@ With the swap chain description initialized, we can create both the swap chain o
 
 main.cpp
 
-261
 
-262
-
-263
-
-264
-
-265
-
-266
-
-267
-
-268
-
-269
-
-270
-
-271
-
-272
-
-273
-
-274
-
-275
-
-276
-
-277
-
-278
-
-279
-
-280
-
-281
-
-282
-
-283
-
-284
-
-285
-
-`UINT` `createDeviceFlags = 0;`
-
-`#if _DEBUG`
-
-`createDeviceFlags = D3D11_CREATE_DEVICE_DEBUG;`
-
-`#endif`
-
-`// These are the feature levels that we will accept.`
-
-`D3D_FEATURE_LEVEL featureLevels[] =`
-
-`{`
-
-`D3D_FEATURE_LEVEL_11_1,`
-
-`D3D_FEATURE_LEVEL_11_0,`
-
-`D3D_FEATURE_LEVEL_10_1,`
-
-`D3D_FEATURE_LEVEL_10_0,`
-
-`D3D_FEATURE_LEVEL_9_3,`
-
-`D3D_FEATURE_LEVEL_9_2,`
-
-`D3D_FEATURE_LEVEL_9_1`
-
-`};`
-
-`// This will be the feature level that`
-
-`// is used to create our device and swap chain.`
-
-`D3D_FEATURE_LEVEL featureLevel;`
-
-`HRESULT` `hr = D3D11CreateDeviceAndSwapChain( nullptr, D3D_DRIVER_TYPE_HARDWARE,`
-
-`nullptr, createDeviceFlags, featureLevels, _countof(featureLevels),`
-
-`D3D11_SDK_VERSION, &swapChainDesc, &g_d3dSwapChain, &g_d3dDevice, &featureLevel,`
-
-`&g_d3dDeviceContext );`
+    UINT createDeviceFlags = 0;
+    #if _DEBUG
+        createDeviceFlags = D3D11_CREATE_DEVICE_DEBUG;
+    #endif
+     
+        // These are the feature levels that we will accept.
+        D3D_FEATURE_LEVEL featureLevels[] = 
+        {
+            D3D_FEATURE_LEVEL_11_1,
+            D3D_FEATURE_LEVEL_11_0,
+            D3D_FEATURE_LEVEL_10_1,
+            D3D_FEATURE_LEVEL_10_0,
+            D3D_FEATURE_LEVEL_9_3,
+            D3D_FEATURE_LEVEL_9_2,
+            D3D_FEATURE_LEVEL_9_1
+        };
+     
+        // This will be the feature level that 
+        // is used to create our device and swap chain.
+        D3D_FEATURE_LEVEL featureLevel;
+     
+        HRESULT hr = D3D11CreateDeviceAndSwapChain( nullptr, D3D_DRIVER_TYPE_HARDWARE, 
+            nullptr, createDeviceFlags, featureLevels, _countof(featureLevels), 
+            D3D11_SDK_VERSION, &swapChainDesc, &g_d3dSwapChain, &g_d3dDevice, &featureLevel,
+            &g_d3dDeviceContext );
 
 The  **createDeviceFlags**  is a bitfield that defines a set of special parameters that are used to create the device  [[26]](https://www.3dgep.com/introduction-to-directx-11/#D3D11_CREATE_DEVICE_FLAG). In this case we specify the  **D3D11_CREATE_DEVICE_DEBUG**  flag to create a device that supports the  [debug layer](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476881(v=vs.85).aspx#Debug "Debug Layer"). The debug layer provides additional checks for correctness and consistency and provides more robust feedback if we do something wrong. Adding this layer does incur some overhead so it is not recommended for production releases.
 
@@ -1152,61 +1057,21 @@ The  [D3D11CreateDeviceAndSwapChain](https://msdn.microsoft.com/en-us/library/wi
 
 D3D11CreateDeviceAndSwapChain function
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-`HRESULT` `D3D11CreateDeviceAndSwapChain(`
-
-`_In_ IDXGIAdapter *pAdapter,`
-
-`_In_ D3D_DRIVER_TYPE DriverType,`
-
-`_In_` `HMODULE` `Software,`
-
-`_In_` `UINT` `Flags,`
-
-`_In_` `const` `D3D_FEATURE_LEVEL *pFeatureLevels,`
-
-`_In_` `UINT` `FeatureLevels,`
-
-`_In_` `UINT` `SDKVersion,`
-
-`_In_` `const` `DXGI_SWAP_CHAIN_DESC *pSwapChainDesc,`
-
-`_Out_ IDXGISwapChain **ppSwapChain,`
-
-`_Out_ ID3D11Device **ppDevice,`
-
-`_Out_ D3D_FEATURE_LEVEL *pFeatureLevel,`
-
-`_Out_ ID3D11DeviceContext **ppImmediateContext`
-
-`);`
+    HRESULT D3D11CreateDeviceAndSwapChain(
+      _In_   IDXGIAdapter *pAdapter,
+      _In_   D3D_DRIVER_TYPE DriverType,
+      _In_   HMODULE Software,
+      _In_   UINT Flags,
+      _In_   const D3D_FEATURE_LEVEL *pFeatureLevels,
+      _In_   UINT FeatureLevels,
+      _In_   UINT SDKVersion,
+      _In_   const DXGI_SWAP_CHAIN_DESC *pSwapChainDesc,
+      _Out_  IDXGISwapChain **ppSwapChain,
+      _Out_  ID3D11Device **ppDevice,
+      _Out_  D3D_FEATURE_LEVEL *pFeatureLevel,
+      _Out_  ID3D11DeviceContext **ppImmediateContext
+    );
 
 Which has the following properties:
 
@@ -1233,51 +1098,19 @@ If we execute the  [D3D11CreateDeviceAndSwapChain](https://msdn.microsoft.com/en
 
 main.cpp
 
-287
 
-288
-
-289
-
-290
-
-291
-
-292
-
-293
-
-294
-
-295
-
-296
-
-297
-
-298
-
-`if` `( hr == E_INVALIDARG )`
-
-`{`
-
-`hr = D3D11CreateDeviceAndSwapChain( nullptr, D3D_DRIVER_TYPE_HARDWARE,`
-
-`nullptr, createDeviceFlags, &featureLevels[1], _countof(featureLevels) - 1,`
-
-`D3D11_SDK_VERSION, &swapChainDesc, &g_d3dSwapChain, &g_d3dDevice, &featureLevel,`
-
-`&g_d3dDeviceContext );`
-
-`}`
-
-`if` `( FAILED(hr) )`
-
-`{`
-
-`return` `-1;`
-
-`}`
+    if ( hr == E_INVALIDARG )
+    {
+        hr = D3D11CreateDeviceAndSwapChain( nullptr, D3D_DRIVER_TYPE_HARDWARE, 
+            nullptr, createDeviceFlags, &featureLevels[1], _countof(featureLevels) - 1, 
+            D3D11_SDK_VERSION, &swapChainDesc, &g_d3dSwapChain, &g_d3dDevice, &featureLevel,
+            &g_d3dDeviceContext );
+    }
+     
+    if ( FAILED(hr) )
+    {
+        return -1;
+    }
 
 The  **D3D11CreateDeviceAndSwapChain**  function is invoked again, this time without the  **D3D_FEATURE_LEVEL_11_1**  enumeration value.
 
@@ -4907,5 +4740,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MTkwNzUyMDgsLTQyMjU3NDk2OV19
+eyJoaXN0b3J5IjpbODMzMDI4NzYsLTQyMjU3NDk2OV19
 -->
