@@ -821,135 +821,41 @@ Before we can display the window, we need to create our main game loop. To execu
 
 main.cpp
 
-705
-
-706
-
-707
-
-708
-
-709
-
-710
-
-711
-
-712
-
-713
-
-714
-
-715
-
-716
-
-717
-
-718
-
-719
-
-720
-
-721
-
-722
-
-723
-
-724
-
-725
-
-726
-
-727
-
-728
-
-729
-
-730
-
-731
-
-732
-
-733
-
-734
-
-735
-
-736
-
-737
-
-738
-
-739
-
-`/**`
-
-`* The main application loop.`
-
-`*/`
-
-`int` `Run()`
-
-`{`
-
-`MSG msg = {0};`
-
-`static` `DWORD` `previousTime = timeGetTime();`
-
-`static` `const` `float` `targetFramerate = 30.0f;`
-
-`static` `const` `float` `maxTimeStep = 1.0f / targetFramerate;`
-
-`while` `( msg.message != WM_QUIT )`
-
-`{`
-
-`if` `( PeekMessage( &msg, 0, 0, 0, PM_REMOVE ) )`
-
-`{`
-
-`TranslateMessage( &msg );`
-
-`DispatchMessage( &msg );`
-
-`}`
-
-`else`
-
-`{`
-
-`DWORD` `currentTime = timeGetTime();`
-
-`float` `deltaTime = ( currentTime - previousTime ) / 1000.0f;`
-
-`previousTime = currentTime;`
-
-`// Cap the delta time to the max time step (useful if your`
-
-`// debugging and you don't want the deltaTime value to explode.`
-
-`deltaTime = std::min<``float``>(deltaTime, maxTimeStep);`
-
-`// Update( deltaTime );`
-
-`// Render();`
-
-`}`
-
-`}`
-
-`return` `static_cast``<``int``>(msg.wParam);`
-
-`}`
+    /**
+     * The main application loop.
+     */
+    int Run()
+    {
+        MSG msg = {0};
+     
+        static DWORD previousTime = timeGetTime();
+        static const float targetFramerate = 30.0f;
+        static const float maxTimeStep = 1.0f / targetFramerate;
+     
+        while ( msg.message != WM_QUIT )
+        {
+            if ( PeekMessage( &msg, 0, 0, 0, PM_REMOVE ) )
+            {
+                TranslateMessage( &msg );
+                DispatchMessage( &msg );
+            }
+            else
+            {
+                DWORD currentTime = timeGetTime();
+                float deltaTime = ( currentTime - previousTime ) / 1000.0f;
+                previousTime = currentTime;
+     
+                // Cap the delta time to the max time step (useful if your 
+                // debugging and you don't want the deltaTime value to explode.
+                deltaTime = std::min<float>(deltaTime, maxTimeStep);
+     
+    //            Update( deltaTime );
+    //            Render();
+            }
+        }
+     
+        return static_cast<int>(msg.wParam);
+    }
 
 The  **Run**  function will continue to execute indefinitely until the  [WM_QUIT](https://msdn.microsoft.com/en-us/library/windows/desktop/ms632641(v=vs.85).aspx "WM_QUIT message")  window message is posted to the window’s message queue.
 
@@ -969,85 +875,29 @@ The main entry point for our application is the  **wWinMain**  function. In this
 
 main.cpp
 
-741
 
-742
-
-743
-
-744
-
-745
-
-746
-
-747
-
-748
-
-749
-
-750
-
-751
-
-752
-
-753
-
-754
-
-755
-
-756
-
-757
-
-758
-
-759
-
-760
-
-761
-
-762
-
-`int` `WINAPI wWinMain(` `HINSTANCE` `hInstance,` `HINSTANCE` `prevInstance,` `LPWSTR` `cmdLine,` `int` `cmdShow )`
-
-`{`
-
-`UNREFERENCED_PARAMETER( prevInstance );`
-
-`UNREFERENCED_PARAMETER( cmdLine );`
-
-`// Check for DirectX Math library support.`
-
-`if` `( !XMVerifyCPUSupport() )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to verify DirectX Math library support."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`if``( InitApplication(hInstance, cmdShow) != 0 )`
-
-`{`
-
-`MessageBox( nullptr, TEXT(``"Failed to create applicaiton window."``), TEXT(``"Error"``), MB_OK );`
-
-`return` `-1;`
-
-`}`
-
-`int` `returnCode = Run();`
-
-`return` `returnCode;`
-
-`}`
+    int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine, int cmdShow )
+    {
+        UNREFERENCED_PARAMETER( prevInstance );
+        UNREFERENCED_PARAMETER( cmdLine );
+     
+        // Check for DirectX Math library support.
+        if ( !XMVerifyCPUSupport() )
+        {
+            MessageBox( nullptr, TEXT("Failed to verify DirectX Math library support."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        if( InitApplication(hInstance, cmdShow) != 0 )
+        {
+            MessageBox( nullptr, TEXT("Failed to create applicaiton window."), TEXT("Error"), MB_OK );
+            return -1;
+        }
+     
+        int returnCode = Run();
+     
+        return returnCode;
+    }
 
 On line 747, the  [XMVerifyCPUSupport](https://msdn.microsoft.com/en-us/library/microsoft.directx_sdk.utilities.xmverifycpusupport(v=vs.85).aspx "XMVerifyCPUSupport method")  function will return  **true**  if the  **DirectXMath**library is supported on the current platform.
 
@@ -1082,117 +932,37 @@ To create the device and swap chain, we must first setup the swap chain descript
 
 main.cpp
 
-230
 
-231
-
-232
-
-233
-
-234
-
-235
-
-236
-
-237
-
-238
-
-239
-
-240
-
-241
-
-242
-
-243
-
-244
-
-245
-
-246
-
-247
-
-248
-
-249
-
-250
-
-251
-
-252
-
-253
-
-254
-
-255
-
-256
-
-257
-
-258
-
-259
-
-`/**`
-
-`* Initialize the DirectX device and swap chain.`
-
-`*/`
-
-`int` `InitDirectX(` `HINSTANCE` `hInstance,` `BOOL` `vSync )`
-
-`{`
-
-`// A window handle must have been created already.`
-
-`assert``( g_WindowHandle != 0 );`
-
-`RECT clientRect;`
-
-`GetClientRect( g_WindowHandle, &clientRect );`
-
-`// Compute the exact client dimensions. This will be used`
-
-`// to initialize the render targets for our swap chain.`
-
-`unsigned` `int` `clientWidth = clientRect.right - clientRect.left;`
-
-`unsigned` `int` `clientHeight = clientRect.bottom - clientRect.top;`
-
-`DXGI_SWAP_CHAIN_DESC swapChainDesc;`
-
-`ZeroMemory( &swapChainDesc,` `sizeof``(DXGI_SWAP_CHAIN_DESC) );`
-
-`swapChainDesc.BufferCount = 1;`
-
-`swapChainDesc.BufferDesc.Width = clientWidth;`
-
-`swapChainDesc.BufferDesc.Height = clientHeight;`
-
-`swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;`
-
-`swapChainDesc.BufferDesc.RefreshRate = QueryRefreshRate( clientWidth, clientHeight, vSync );`
-
-`swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;`
-
-`swapChainDesc.OutputWindow = g_WindowHandle;`
-
-`swapChainDesc.SampleDesc.Count = 1;`
-
-`swapChainDesc.SampleDesc.Quality = 0;`
-
-`swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;`
-
-`swapChainDesc.Windowed = TRUE;`
+    /** 
+     * Initialize the DirectX device and swap chain.
+     */
+    int InitDirectX( HINSTANCE hInstance, BOOL vSync )
+    {
+        // A window handle must have been created already.
+        assert( g_WindowHandle != 0 );
+     
+        RECT clientRect;
+        GetClientRect( g_WindowHandle, &clientRect );
+     
+        // Compute the exact client dimensions. This will be used
+        // to initialize the render targets for our swap chain.
+        unsigned int clientWidth = clientRect.right - clientRect.left;
+        unsigned int clientHeight = clientRect.bottom - clientRect.top;
+     
+        DXGI_SWAP_CHAIN_DESC swapChainDesc;
+        ZeroMemory( &swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC) );
+     
+        swapChainDesc.BufferCount = 1;
+        swapChainDesc.BufferDesc.Width = clientWidth;
+        swapChainDesc.BufferDesc.Height = clientHeight;
+        swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+        swapChainDesc.BufferDesc.RefreshRate = QueryRefreshRate( clientWidth, clientHeight, vSync );
+        swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+        swapChainDesc.OutputWindow = g_WindowHandle;
+        swapChainDesc.SampleDesc.Count = 1;
+        swapChainDesc.SampleDesc.Quality = 0;
+        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+        swapChainDesc.Windowed = TRUE;
 
 The  **DXGI_SWAP_CHAIN_DESC**  has the following definition  [[19]](https://www.3dgep.com/introduction-to-directx-11/#DXGI_SWAP_CHAIN_DESC):
 
@@ -5137,5 +4907,5 @@ You can download the source code including the project files for this demo here:
 
 [61] Msdn.microsoft.com. (2014). ID3D11DeviceContext::OMSetDepthStencilState method (Windows). [online] Retrieved from:  [http://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476463(v=vs.85).aspx "ID3D11DeviceContext::OMSetDepthStencilState method")  [Accessed: 21 Mar 2014].
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyOTg0NTMwNSwtNDIyNTc0OTY5XX0=
+eyJoaXN0b3J5IjpbLTE0MTkwNzUyMDgsLTQyMjU3NDk2OV19
 -->
