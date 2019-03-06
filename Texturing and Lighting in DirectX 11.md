@@ -6,8 +6,8 @@ DirectX 11 - Текстурирование и освещение
 
 Содержание  [[hide](https://www.3dgep.com/texturing-lighting-directx-11/#)]
 
--   [1  Введение](#title)
--   [2  Текстурирование](#title)
+-   [1  Введение](#Введение)
+-   [2  Текстурирование](#Текстурирование)
     -   [2.1  Текстурные координаты](#title)
     -   [2.2  Mip Mapping](#title)
     -   [2.3  Texture Sampler](#title)
@@ -53,30 +53,30 @@ DirectX 11 - Текстурирование и освещение
         -   [10.3.3  Light Properties](#title)
         -   [10.3.4  Diffuse](#title)
         -   [10.3.5  Specular](#title)
-        -   [10.3.6  Attenuation](https://www.3dgep.com/texturing-lighting-directx-11/#Attenuation-2)
-        -   [10.3.7  Point Lights](https://www.3dgep.com/texturing-lighting-directx-11/#Point_Lights)
-        -   [10.3.8  Directional Lights](https://www.3dgep.com/texturing-lighting-directx-11/#Directional_Lights)
-        -   [10.3.9  Spotlight Cone](https://www.3dgep.com/texturing-lighting-directx-11/#Spotlight_Cone)
-        -   [10.3.10  Spotlight](https://www.3dgep.com/texturing-lighting-directx-11/#Spotlight)
-        -   [10.3.11  Compute Lighting](https://www.3dgep.com/texturing-lighting-directx-11/#Compute_Lighting)
-        -   [10.3.12  Pixel Shader Entry Point](https://www.3dgep.com/texturing-lighting-directx-11/#Pixel_Shader_Entry_Point)
--   [11  Application Code](https://www.3dgep.com/texturing-lighting-directx-11/#Application_Code)
-    -   [11.1  Vertex Data](https://www.3dgep.com/texturing-lighting-directx-11/#Vertex_Data)
-    -   [11.2  Load Content](https://www.3dgep.com/texturing-lighting-directx-11/#Load_Content)
-        -   [11.2.1  Effect Factory](https://www.3dgep.com/texturing-lighting-directx-11/#Effect_Factory)
-        -   [11.2.2  Texture Loading](https://www.3dgep.com/texturing-lighting-directx-11/#Texture_Loading)
-        -   [11.2.3  Sampler Object](https://www.3dgep.com/texturing-lighting-directx-11/#Sampler_Object)
-        -   [11.2.4  Materials](https://www.3dgep.com/texturing-lighting-directx-11/#Materials)
-        -   [11.2.5  Vertex and Index Buffers](https://www.3dgep.com/texturing-lighting-directx-11/#Vertex_and_Index_Buffers)
-        -   [11.2.6  Instance Buffers](https://www.3dgep.com/texturing-lighting-directx-11/#Instance_Buffers)
-        -   [11.2.7  Instanced Input Layout](https://www.3dgep.com/texturing-lighting-directx-11/#Instanced_Input_Layout)
-    -   [11.3  Update Function](https://www.3dgep.com/texturing-lighting-directx-11/#Update_Function)
-        -   [11.3.1  Update Camera](https://www.3dgep.com/texturing-lighting-directx-11/#Update_Camera)
-        -   [11.3.2  Update Lights](https://www.3dgep.com/texturing-lighting-directx-11/#Update_Lights)
-    -   [11.4  Render Function](https://www.3dgep.com/texturing-lighting-directx-11/#Render_Function)
--   [12  Final Result](https://www.3dgep.com/texturing-lighting-directx-11/#Final_Result)
--   [13  Download the Source](https://www.3dgep.com/texturing-lighting-directx-11/#Download_the_Source)
--   [14  References](https://www.3dgep.com/texturing-lighting-directx-11/#References)
+        -   [10.3.6  Attenuation](#title)
+        -   [10.3.7  Point Lights](#title)
+        -   [10.3.8  Directional Lights](#title)
+        -   [10.3.9  Spotlight Cone](#title)
+        -   [10.3.10  Spotlight](#title)
+        -   [10.3.11  Compute Lighting](#title)
+        -   [10.3.12  Pixel Shader Entry Point](#title)
+-   [11  Application Code](#title)
+    -   [11.1  Vertex Data](#title)
+    -   [11.2  Load Content](#title)
+        -   [11.2.1  Effect Factory](#title)
+        -   [11.2.2  Texture Loading](#title)
+        -   [11.2.3  Sampler Object](#title)
+        -   [11.2.4  Materials](#title)
+        -   [11.2.5  Vertex and Index Buffers](#title)
+        -   [11.2.6  Instance Buffers](#title)
+        -   [11.2.7  Instanced Input Layout](#title)
+    -   [11.3  Update Function](#title)
+        -   [11.3.1  Update Camera](#title)
+        -   [11.3.2  Update Lights](#title)
+    -   [11.4  Render Function](#title)
+-   [12  Final Result](#title)
+-   [13  Download the Source](#title)
+-   [14  References](#title)
 
 # Введение
 
@@ -4342,6 +4342,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4OTE0MTEyNywtODcxNTIzMzcwLC0xNj
-gwMjU0NzEwXX0=
+eyJoaXN0b3J5IjpbLTIwNzYyMDc2MDAsLTg3MTUyMzM3MCwtMT
+Y4MDI1NDcxMF19
 -->
