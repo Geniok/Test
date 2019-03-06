@@ -281,29 +281,14 @@ Mipmap фильтрация
 
 В следующей таблице приведены различные режимы адресации, поддерживаемые DirectX 11 [[7]](https://www.3dgep.com/texturing-lighting-directx-11/#Texture_Address_Mode).
 
-ENUMERATION CONSTANT
 
-DESCRIPTION
-
-**D3D11_TEXTURE_ADDRESS_WRAP**
-
-Дублирует текстуры на каждом (U, V) переходе. Например, для значений u от 0 до 3 текстура повторяется три раза.
-
-**D3D11_TEXTURE_ADDRESS_MIRROR**
-
-Переворачивает текстуру на каждом (u, v) переходе. Например, для значений u от 0 до 1 текстура адресована нормально; между 1 и 2 текстура переворачивается (зеркально отражается); между 2 и 3 текстура снова нормальная; и так далее.
-
-**D3D11_TEXTURE_ADDRESS_CLAMP**
-
-Текстурные координаты вне диапазона [0.0, 1.0] устанавливаются в цвет текстуры в 0.0 или 1.0 соответственно..
-
-**D3D11_TEXTURE_ADDRESS_BORDER**
-
-Текстурные координаты вне диапазона [0.0, 1.0] устанавливаются в цвет границы, заданный [D3D11_SAMPLER_DESC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476207(v=vs.85).aspx "D3D11_SAMPLER_DESC structure")  или HLSL - коде.
-
-**D3D11_TEXTURE_ADDRESS_MIRROR_ONCE**
-
-Похоже на  **D3D11_TEXTURE_ADDRESS_MIRROR** и **D3D11_TEXTURE_ADDRESS_CLAMP**. Принимает абсолютное значение текстурной координаты  (таким образом, зеркально отражается относительно 0), а затем устанавливается максимальное значение.
+|              Значение             |                                                                                                                    Описание                                                                                                                    |
+|:---------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| D3D11_TEXTURE_ADDRESS_WRAP        | Дублирует текстуры на каждом (U, V) переходе. Например, для значений u от 0 до 3 текстура повторяется три раза.                                                                                                                                |
+| D3D11_TEXTURE_ADDRESS_MIRROR      | Переворачивает текстуру на каждом (u, v) переходе. Например, для значений u от 0 до 1 текстура адресована нормально; между 1 и 2 текстура переворачивается (зеркально отражается); между 2 и 3 текстура снова нормальная; и так далее.         |
+| D3D11_TEXTURE_ADDRESS_CLAMP       | Текстурные координаты вне диапазона [0.0, 1.0] устанавливаются в цвет текстуры в 0.0 или 1.0 соответственно.                                                                                                                                   |
+| D3D11_TEXTURE_ADDRESS_BORDER      | Текстурные координаты вне диапазона [0.0, 1.0] устанавливаются в цвет границы, заданный [D3D11_SAMPLER_DESC](https://msdn.microsoft.com/en-us/library/windows/desktop/ff476207(v=vs.85).aspx "D3D11_SAMPLER_DESC structure")  или HLSL - коде. |
+| D3D11_TEXTURE_ADDRESS_MIRROR_ONCE | Похоже на  **D3D11_TEXTURE_ADDRESS_MIRROR** и **D3D11_TEXTURE_ADDRESS_CLAMP**. Принимает абсолютное значение текстурной координаты  (таким образом, зеркально отражается относительно 0), а затем устанавливается максимальное значение.       |
 
 ### MIPMAP LOD LEVELS
 
@@ -4314,5 +4299,5 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwMzUxNTM3OV19
+eyJoaXN0b3J5IjpbMTY3MzM5NDU1NV19
 -->
