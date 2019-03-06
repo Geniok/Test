@@ -342,9 +342,7 @@ Mipmap фильтрация
 Другая модель освещения, аналогичная модели освещения Phong, называется  [Blinn-Phong lighting model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model "Blinn–Phong shading model"). Эта модель освещения использовалась для освещения каждой вершины с использованием конвейера с фиксированными функциями в DirectX 9 и более ранних версиях. Основное различие между моделью освещения Phong и моделью освещения Blinn-Phong заключается в способе вычисления зеркального компонента. Модель освещения Блинна-Фонга - это оптимизация модели освещения Фонга для направленных источников света, поскольку вектор света и вектор глаза (которые необходимы для вычисления зеркального компонента) можно считать постоянными, когда освещение вычисляется в пространстве обзора. Это означает, что эти векторы не нужно вычислять для каждой вершины (или пикселя) во время рендеринга, что улучшает общую производительность алгоритма рендеринга. Модель освещения Blinn-Phong является приближением модели освещения Phong и может быть подвержена артефактам освещения в определенных ситуациях. По этой причине я решил реализовать модель освещения Phong в этой статье.
 
 Основное уравнение освещения для моделей освещения Phong и Blinn-Phong::
-
 <img src="https://latex.codecogs.com/gif.latex?Color_{final}=emissive+ambient+\sum_{i=0}^{N}(ambient_i+diffuse_i+specular_i)"/>
-
 Где  <img src="https://latex.codecogs.com/gif.latex?(N)"/>  количество источников света, влияющих на визуализируемый объект
 
 В следующих разделах я расскажу о каждом из компонентов освещения отдельно.
@@ -353,11 +351,8 @@ Mipmap фильтрация
 
 Компонент свечения добавит цвет поверхности объекта даже при отсутствии каких-либо источников света. Как следует из названия, компонент свечения дает эффект, будто сам объект излучает свет. Хотя это утверждение не совсем верно, потому что объект фактически не освещает какие-либо объекты вокруг себя, и при этом он не будет автоматически создавать приятный эффект «цветения», который вы ожидаете от излучающих материалов. Чтобы получить действительно излучающие материалы, вам нужно либо выполнить несколько проходов во время рендеринга, либо использовать косвенные алгоритмы глобального освещения, такие как трассировка лучей или трассировка путей. Эти темы выходят за рамки данной статьи, так как мы сосредоточимся на методах прямого рендеринга, которые поддерживают прямое освещение.
 
-Компонент свечения вычисляется из свойства материала.
-
-![](https://www.3dgep.com/texturing-lighting-directx-11/?emissive=k_e)
-
-Где  ![](https://www.3dgep.com/texturing-lighting-directx-11/?k_e)  компонент свечения.
+Компонент свечения вычисляется из свойства материала. <img src="https://latex.codecogs.com/gif.latex?emissive=k_e"/>
+Где <img src="https://latex.codecogs.com/gif.latex?(k_e)"/> компонент свечения.
 
 На рисунке ниже показана сцена «Cornell bo» с несколькими объектами, имеющими только компонент излучения. В этой сцене не включены источники света, но объекты видимы и каждый имеет свой цвет.
 
@@ -4300,6 +4295,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1NDIwMzA4MSwxNzc1MTU4NzQxLDE0MT
+eyJoaXN0b3J5IjpbMTk4MjI3MTg0MiwxNzc1MTU4NzQxLDE0MT
 UxODY5MDQsNjU3Mjg0MjA2XX0=
 -->
