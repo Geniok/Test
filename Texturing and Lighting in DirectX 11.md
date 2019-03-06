@@ -411,7 +411,7 @@ DESCRIPTION
 
 ## Ambient
 
-The material's ambient term is combined with a global ambient term to produce the final ambient contribution.
+Окружающий термин материала объединяется с глобальным окружающим термином, чтобы произвести окончательный внешний вклад.
 
 Let:
 
@@ -422,17 +422,17 @@ Then
 
 ![](https://www.3dgep.com/texturing-lighting-directx-11/?ambient=k_a*G_a)
 
-The image below shows the same scene rendered with only ambient contribution.
+Изображение ниже показывает ту же сцену, визуализированную только с окружающим вкладом.
 
 [![Ambient Only](https://www.3dgep.com/wp-content/uploads/2014/05/Ambient-Only.png)](https://www.3dgep.com/wp-content/uploads/2014/05/Ambient-Only.png)
 
 Ambient Only
 
-The ambient contribution should not be too bright otherwise the scene will appear overexposed and washed-out.
+Вклад окружающей среды не должен быть слишком ярким, иначе сцена будет выглядеть переэкспонированной и размытойt.
 
 ## Diffuse
 
-Both the diffuse and specular components require lights to be activated in the scene. The diffuse color is emitted evenly across the surface of an object. The intensity of the light that contributes to the color of the material is determined by the angle of the surface normal and the light vector.
+Как рассеивающий, так и зеркальный компоненты требуют включения света в сцене. Рассеянный цвет излучается равномерно по всей поверхности объекта. Интенсивность света, который влияет на цвет материала, определяется углом поверхности нормали и вектором света.
 
 [![Diffuse Lighting](https://www.3dgep.com/wp-content/uploads/2014/05/Diffuse-Lighting.png)](https://www.3dgep.com/wp-content/uploads/2014/05/Diffuse-Lighting.png)
 
@@ -4342,5 +4342,5 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4MzEwOTk0MCwtMTY4MDI1NDcxMF19
+eyJoaXN0b3J5IjpbLTg3MTUyMzM3MCwtMTY4MDI1NDcxMF19
 -->
