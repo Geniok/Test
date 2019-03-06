@@ -366,10 +366,10 @@ DESCRIPTION
 Подобно материалам, источники света также определяют набор свойств, которые определяют конечный результат сцены. Опять же, источники света могут иметь произвольное количество аргументов в зависимости от модели освещения, но для этой статьи мы определим набор свойств источника света.
 
 -   **Light Type**: Мы определим 3 типа источников света:
-    -   **Point**: И, который излучает свет равномерно во всех направлениях.
-    -   **Spot**: A positional light that emits light in a specific direction.
-    -   **Directional**: A directional light source only defines a direction but does not have a position (it is considered to be infinitely far away). This light type can be used to simulate the sun in outdoor scenes.
--   **Color**: The color of the light source. For this article, we will combine the light's diffuse and specular contributions into a single color property.
+    -   **Point**: Источник, который излучает свет равномерно во всех направлениях.
+    -   **Spot**: Источник, который излучает свет в определенном направлении.
+    -   **Directional**:Направленный источник света, которы имеет только направление, но не имеет конкретного положения (считается, что он находится бесконечно далеко). Этот тип освещения можно использовать для имитации солнца на открытых сценах.
+-   **Color**: Цвет источника света. В этой статье мы объединим диффузный и зеркальный вклад света в одно свойство цвета.
 -   **Position**: For point and spot lights this property defines the 3-dimensional position of the light source.
 -   **Direction**: For spot and directional lights this property defines the direction the light is pointing.
 -   **SpotAngle**: The angle of the spotlight cone in radians.
@@ -4342,6 +4342,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MzA4ODU4NDYsNzk0MDgxOTk2LC02NT
-YzMjk0NjMsLTE0NjIzMDI4ODcsLTIxMjUzNTc2NDFdfQ==
+eyJoaXN0b3J5IjpbLTQ0NDI1MTUzNiw3OTQwODE5OTYsLTY1Nj
+MyOTQ2MywtMTQ2MjMwMjg4NywtMjEyNTM1NzY0MV19
 -->
