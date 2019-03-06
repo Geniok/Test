@@ -133,12 +133,11 @@ Mipmapping vs No Mipmapping  [[1]](https://www.3dgep.com/texturing-lighting-dire
 
 Настройки фильтра состояния сэмплера текстуры определяют, как выбранный тексель смешивается с соседними текселями для получения окончательного цвета текселя. Обычно существует три типа фильтрации; **точечная** , **линейная** и **анизотропная**. Точечная фильтрация просто переносит ближайший тексель к выбранному субтекселю. Линейная фильтрация будет применять билинейную смесь между ближайшими текселями к выбранному субтекстелю, используя расстояние до центра текселя в качестве веса, используемого для смешения текселей для получения конечного текселя. Анизотропная фильтрация применяется при выборке поверхностей, которые наклонены (находятся под углом) к зрителю. Анизотропная фильтрация обычно используется при выборке текстур, которые применяются к плоскости земли или местности  [[4]](https://www.3dgep.com/texturing-lighting-directx-11/#Anisotropic_filtering).
 
-[![Anisotropic compare](https://www.3dgep.com/wp-content/uploads/2014/05/Anisotropic_compare.png)](https://www.3dgep.com/wp-content/uploads/2014/05/Anisotropic_compare.png)
+[![Сравнение анизотропной фильтрации](https://www.3dgep.com/wp-content/uploads/2014/05/Anisotropic_compare.png)](https://www.3dgep.com/wp-content/uploads/2014/05/Anisotropic_compare.png)
 
 Пример анизотропной фильтрации  [[4]](https://www.3dgep.com/texturing-lighting-directx-11/#Anisotropic_filtering)
 
-Изображение **Сравнение анизотропной фильтрации** показывает разницу между линейной фильтрацию с отображением слева и анизотропную фильтрацию справа.
-The  **Anisotropic compare**  image shows linear mipmapped filtering on the left and anisotropic filtering on the right.
+Изображение **Сравнение анизотропной фильтрации** показывает разницу между линейной фильтрации (изображение слева) и анизотропной фильтрации (изображение справа).
 
 The image below shows an example of how the texture filtering algorithms work.
 
@@ -4393,6 +4392,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyNzI4NjQ5MiwtMTkxMzY0MTYyOCwtOD
+eyJoaXN0b3J5IjpbMTMzNDA3Nzc0MywtMTkxMzY0MTYyOCwtOD
 A1ODU0OTIzXX0=
 -->
