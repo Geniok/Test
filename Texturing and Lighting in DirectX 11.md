@@ -317,7 +317,7 @@ Mipmap фильтрация
 -   **Ambient**: Свойство материала  (обозначается как  k_a) используемое для имитации эффекта глобального освещения, такого как свет, получаемый от солнца. Компонент окружающей среды материала может опционально определяться вкладом окружающей среды всех источников света в сцене, но также возможно определить вклад материала в окружающую среду, комбинируя его с глобальной постоянной окружающей среды для вычисления окончательного вклада окружающей среды. В этой статье мы будем использовать глобальный внешний термин вместо определения внешнего источника для каждого источника света.
 -   **Diffuse**: Диффузный цвет материала (обозначается как k_d) - это цвет, который отражается равномерно во всех направлениях. Рассеянный цвет материала не зависит от угла обзора. Тусклые объекты (например, кора дерева или наждачная бумага) представляют собой почти чисто рассеянные материалы и имеют одинаковый цвет независимо от угла обзора. Термин «диффузный материал» объединяется с диффузным вкладом всех источников света в сцене.
 -   **Specular**: Цвет блеска (обозначается как k_s) позволяет материалу выглядеть блестящим. Такие материалы, как глянцевые краски, металлы и блестящие пластмассы, имеют яркие блики при просмотре под определенными углами. Это называется зеркальным отражением и становится очевидным, когда угол обзора находится непосредственно на пути отражения источника света.
--   **Specular Power**: Видимая яркость зеркального отражения определяется зеркальной силой материала (обозначается как  alpha)). По мере увеличения зеркальной мощности зеркальная подсветка становится более жесткой и четкой. Зеркальный компонент материала сочетается с зеркальным вкладом каждого источника света в сцену.
+-   **Specular Power**: Видимая яркость зеркального отражения определяется зеркальной силой материала (обозначается как alpha). По мере увеличения зеркальной мощности зеркальная подсветка становится более жесткой и четкой. Зеркальный компонент материала сочетается с зеркальным вкладом каждого источника света в сцену.
 
 # Light Properties
 
@@ -343,9 +343,9 @@ Mipmap фильтрация
 
 Основное уравнение освещения для моделей освещения Phong и Blinn-Phong::
 
-![](https://www.3dgep.com/texturing-lighting-directx-11/?Color_{final}=emissive+ambient+\sum_{i=0}^{N}(ambient_i+diffuse_i+specular_i))
+Color_{final}=emissive+ambient+\sum_{i=0}^{N}(ambient_i+diffuse_i+specular_i))
 
-Где  ![](https://www.3dgep.com/texturing-lighting-directx-11/?N)  количество источников света, влияющих на визуализируемый объект
+Где  N - количество источников света, влияющих на визуализируемый объект
 
 В следующих разделах я расскажу о каждом из компонентов освещения отдельно.
 
@@ -355,9 +355,9 @@ Mipmap фильтрация
 
 Компонент свечения вычисляется из свойства материала.
 
-![](https://www.3dgep.com/texturing-lighting-directx-11/?emissive=k_e)
+emissive=k_e
 
-Где  ![](https://www.3dgep.com/texturing-lighting-directx-11/?k_e)  компонент свечения.
+Где k_e - компонент свечения.
 
 На рисунке ниже показана сцена «Cornell bo» с несколькими объектами, имеющими только компонент излучения. В этой сцене не включены источники света, но объекты видимы и каждый имеет свой цвет.
 
@@ -4300,6 +4300,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1NDc5NzgzNywtMjA1MjI0MjkwMiwxOD
-YyMzk0MDcxLDE2NzMzOTQ1NTVdfQ==
+eyJoaXN0b3J5IjpbLTE4NzUxNzExODUsLTIwNTIyNDI5MDIsMT
+g2MjM5NDA3MSwxNjczMzk0NTU1XX0=
 -->
