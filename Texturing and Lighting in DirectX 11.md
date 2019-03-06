@@ -239,23 +239,14 @@ ENUMERATION CONSTANT
 
 #### Mirror
 
-The  **mirror**  texture address mode will flip the UV coordinates at every integer boundary. For example, texture coordinates in the range [0 ... 1] will be treated normally but texture coordinates in the range (1 ... 2] will be flipped (by subtracting the fractional part of the texture coordinate by 1) and texture coordinates in the range (2 ... 3] will be treated normally again.
+Режим адресации текстуры **mirror** перевернет координаты UV на каждой целочисленной границе. Например, координаты текстуры в диапазоне [0 ... 1] будут обрабатываться нормально, а координаты текстуры в диапазоне (1 ... 2] будут переворачиваться (путем вычитания дробной части координаты текстуры на 1) и текстуры координаты в диапазоне (2 ... 3] будут снова обрабатываться как обычно.
 
-The following pseudo algorithm explains this technique.
+Следующий псевдоалгоритм объясняет эту технику.
 
-Mirror Address Mode
+Режим адресации Mirror
 
-1
-
-2
-
-3
-
-4
-
-5
-
-`if integer part of texCoord is odd then`
+	if integer part of texCoord is odd then
+	let texCoord = 1 - fractional part of texCoord`
 
 `let texCoord = 1 - fractional part of texCoord`
 
@@ -4378,5 +4369,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ1NDQxMDY1NywtMTMyOTkxMjM2N119
+eyJoaXN0b3J5IjpbMTg0MDczMjA5NSwxNDU0NDEwNjU3LC0xMz
+I5OTEyMzY3XX0=
 -->
