@@ -295,7 +295,7 @@ Mipmap фильтрация
 
 Также возможно указать минимальный и максимальный уровни LOD mipmap в сэмплере текстуры.
 
-Напомним, что уровень LOD mipmap наиболее подробной (с самым высоким разрешением) текстуры  0 и самый маленький уровень LOD MIPMAP  ![](https://www.3dgep.com/texturing-lighting-directx-11/?\log_2(N))  где ![](https://www.3dgep.com/texturing-lighting-directx-11/?N)  количество текселей по самому длинному краю изображения. Задав значения  **MinLOD**  и  **MaxLOD**  в сэмплере текстуры, мы можем ограничить диапазон уровней LOD текстуры, которые будут использоваться при выборке из текстуры.
+Напомним, что уровень LOD mipmap наиболее подробной (с самым высоким разрешением) текстуры  (0) и самый маленький уровень LOD MIPMAP (log_2(N))  где N  количество текселей по самому длинному краю изображения. Задав значения  **MinLOD**  и  **MaxLOD**  в сэмплере текстуры, мы можем ограничить диапазон уровней LOD текстуры, которые будут использоваться при выборке из текстуры.
 
 По-умолчанию, параметр  **MinLOD**  равен  **-FLT_MAX**,  а параметр MaxLOD равен  **FLT_MAX**  которые отключают любые ограничения LOD.
 
@@ -305,7 +305,7 @@ Mipmap фильтрация
 
 ### BORDER COLOR
 
-Сэмплер текстуры также предоставляет свойство для указания цвета границы текстуры. Если для выбора текстуры используется режим адресации текстуры **D3D11_TEXTURE_ADDRESS_BORDER**, то цвет границы будет использован, когда координаты текстуры находятся вне диапазона [0 ... 1]. (Смотри  [Border address mode](https://www.3dgep.com/texturing-lighting-directx-11/#Border)).
+Сэмплер текстуры также предоставляет свойство для указания цвета границы текстуры. Если для выбора текстуры используется режим адресации текстуры **D3D11_TEXTURE_ADDRESS_BORDER**, то цвет границы будет использован, когда координаты текстуры находятся вне диапазона [0 ... 1]. (Смотри  [Border address mode](#Border)).
 
 # Свойства матриалов
 
@@ -313,11 +313,11 @@ Mipmap фильтрация
 
 Каждому объекту в вашей сцене могут быть назначены свойства материала, которые определяют способ визуализации объекта. Хотя материалы объекта могут иметь произвольный набор параметров, для этой статьи я буду использовать материал, который состоит из следующих свойств:
 
--   **Emissive**: Свойство материала (обозначается как  ![](https://www.3dgep.com/texturing-lighting-directx-11/?k_e)) используемое, чтобы материал казался "излучающим" свет даже при отсутствии каких-либо огней.
--   **Ambient**: Свойство материала  (обозначается как  ![](https://www.3dgep.com/texturing-lighting-directx-11/?k_a)) используемое для имитации эффекта глобального освещения, такого как свет, получаемый от солнца. Компонент окружающей среды материала может опционально определяться вкладом окружающей среды всех источников света в сцене, но также возможно определить вклад материала в окружающую среду, комбинируя его с глобальной постоянной окружающей среды для вычисления окончательного вклада окружающей среды. В этой статье мы будем использовать глобальный внешний термин вместо определения внешнего источника для каждого источника света.
--   **Diffuse**: Диффузный цвет материала (обозначается как  ![](https://www.3dgep.com/texturing-lighting-directx-11/?k_d)) - это цвет, который отражается равномерно во всех направлениях. Рассеянный цвет материала не зависит от угла обзора. Тусклые объекты (например, кора дерева или наждачная бумага) представляют собой почти чисто рассеянные материалы и имеют одинаковый цвет независимо от угла обзора. Термин «диффузный материал» объединяется с диффузным вкладом всех источников света в сцене.
--   **Specular**: Цвет блеска (обозначается как  ![](https://www.3dgep.com/texturing-lighting-directx-11/?k_s)) позволяет материалу выглядеть блестящим. Такие материалы, как глянцевые краски, металлы и блестящие пластмассы, имеют яркие блики при просмотре под определенными углами. Это называется зеркальным отражением и становится очевидным, когда угол обзора находится непосредственно на пути отражения источника света.
--   **Specular Power**: Видимая яркость зеркального отражения определяется зеркальной силой материала (обозначается как  ![](https://www.3dgep.com/texturing-lighting-directx-11/?\alpha)). По мере увеличения зеркальной мощности зеркальная подсветка становится более жесткой и четкой. Зеркальный компонент материала сочетается с зеркальным вкладом каждого источника света в сцену.
+-   **Emissive**: Свойство материала (обозначается как  k_e) используемое, чтобы материал казался "излучающим" свет даже при отсутствии каких-либо огней.
+-   **Ambient**: Свойство материала  (обозначается как  k_a) используемое для имитации эффекта глобального освещения, такого как свет, получаемый от солнца. Компонент окружающей среды материала может опционально определяться вкладом окружающей среды всех источников света в сцене, но также возможно определить вклад материала в окружающую среду, комбинируя его с глобальной постоянной окружающей среды для вычисления окончательного вклада окружающей среды. В этой статье мы будем использовать глобальный внешний термин вместо определения внешнего источника для каждого источника света.
+-   **Diffuse**: Диффузный цвет материала (обозначается как k_d) - это цвет, который отражается равномерно во всех направлениях. Рассеянный цвет материала не зависит от угла обзора. Тусклые объекты (например, кора дерева или наждачная бумага) представляют собой почти чисто рассеянные материалы и имеют одинаковый цвет независимо от угла обзора. Термин «диффузный материал» объединяется с диффузным вкладом всех источников света в сцене.
+-   **Specular**: Цвет блеска (обозначается как k_s) позволяет материалу выглядеть блестящим. Такие материалы, как глянцевые краски, металлы и блестящие пластмассы, имеют яркие блики при просмотре под определенными углами. Это называется зеркальным отражением и становится очевидным, когда угол обзора находится непосредственно на пути отражения источника света.
+-   **Specular Power**: Видимая яркость зеркального отражения определяется зеркальной силой материала (обозначается как  alpha)). По мере увеличения зеркальной мощности зеркальная подсветка становится более жесткой и четкой. Зеркальный компонент материала сочетается с зеркальным вкладом каждого источника света в сцену.
 
 # Light Properties
 
@@ -4300,6 +4300,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDAxMzIzNzcsLTIwNTIyNDI5MDIsMT
-g2MjM5NDA3MSwxNjczMzk0NTU1XX0=
+eyJoaXN0b3J5IjpbMTg1NDc5NzgzNywtMjA1MjI0MjkwMiwxOD
+YyMzk0MDcxLDE2NzMzOTQ1NTVdfQ==
 -->
