@@ -219,25 +219,16 @@ ENUMERATION CONSTANT
 
 #### Wrap
 
-The  **wrap**  address mode will simply truncate the whole number part of the texture coordinate, leaving only the fractional part. Using this technique, the texture coordinate (3.25, 3.75) will become (0.25, 0.75). If the texture coordinate is negative, then the resulting texture coordinate will be subtracted from 1 before being applied. For example, (-0.01, -2.25) will become (0.99, 0.75).
+Режим адресации **wrap** просто усекает целую числовую часть координаты текстуры, оставляя только дробную часть. Используя эту технику, координата текстуры (3.25, 3.75) станет (0.25, 0.75). Если координата текстуры отрицательна, то полученная координата текстуры будет вычтена из 1 перед применением. Например, (-0,01, -2,25) станет (0,99, 0,75).
 
-The following pseudo algorithm helps to explain this technique.
+Следующий псевдоалгоритм помогает объяснить эту технику.
 
-Wrap Address Mode
+Режим адресации Wrap
 
-1
+	if texCoord > 1 then
+	let texCoord = fractional part of texCoord
 
-2
 
-3
-
-4
-
-5
-
-`if texCoord > 1 then`
-
-`let texCoord = fractional part of texCoord`
 
 `else if texCoord < 0`
 
@@ -4392,5 +4383,5 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU3MjM2Mjc1OSwtMTkxNTY1ODUwXX0=
+eyJoaXN0b3J5IjpbLTE4NjMwNzY4ODQsLTE5MTU2NTg1MF19
 -->
