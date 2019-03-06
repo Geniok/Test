@@ -370,10 +370,10 @@ DESCRIPTION
     -   **Spot**: Источник, который излучает свет в определенном направлении.
     -   **Directional**:Направленный источник света, которы имеет только направление, но не имеет конкретного положения (считается, что он находится бесконечно далеко). Этот тип освещения можно использовать для имитации солнца на открытых сценах.
 -   **Color**: Цвет источника света. В этой статье мы объединим диффузный и зеркальный вклад света в одно свойство цвета.
--   **Position**: Для прожектора и точечного источников света это свойство определяет трехмерное положение источника света..
--   **Direction**: For spot and directional lights this property defines the direction the light is pointing.
--   **SpotAngle**: The angle of the spotlight cone in radians.
--   **Attenuation**: The attenuation factor is used to simulate the apparent fall-off of the intensity of the light as the distance to the light source increases. This property only applies to positional light sources such as point lights and spot lights (since directional lights don't have a position).
+-   **Position**: Для прожектора и точечного источников света это свойство определяет положение в трехмерном пространстве.
+-   **Direction**: Для прожектора и направленного источника света это свойство определяет направление освещения.
+-   **SpotAngle**: Угол конуса в радианах для прожектора.
+-   **Attenuation**: Коэффициент затухания используется для моделирования видимого падения интенсивности света при увеличении расстояния до источника света. Это свойство применяется только к позиционным источникам света, таким как точечные источники света и точечные источники света (поскольку направленные источники света не имеют положения).
 
 In the next sections we will see how we can combine the material's properties with the lights in the scene to produce the final color.
 
@@ -4342,6 +4342,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjI3MjMzNyw3OTQwODE5OTYsLTY1NjMyOT
-Q2MywtMTQ2MjMwMjg4NywtMjEyNTM1NzY0MV19
+eyJoaXN0b3J5IjpbMTIyNDU4Mjk3OSw3OTQwODE5OTYsLTY1Nj
+MyOTQ2MywtMTQ2MjMwMjg4NywtMjEyNTM1NzY0MV19
 -->
