@@ -6,29 +6,29 @@ DirectX 11 - Текстурирование и освещение
 
 Содержание  [[hide](https://www.3dgep.com/texturing-lighting-directx-11/#)]
 
--   [1  Введение](https://www.3dgep.com/texturing-lighting-directx-11/#Introduction)
--   [2  Текстурирование](https://www.3dgep.com/texturing-lighting-directx-11/#Texturing)
-    -   [2.1  Текстурные координаты](https://www.3dgep.com/texturing-lighting-directx-11/#Texture_Coordinates)
-    -   [2.2  Mip Mapping](https://www.3dgep.com/texturing-lighting-directx-11/#Mip_Mapping)
-    -   [2.3  Texture Sampler](https://www.3dgep.com/texturing-lighting-directx-11/#Texture_Sampler)
-        -   [2.3.1  Filter](https://www.3dgep.com/texturing-lighting-directx-11/#Filter)
-        -   [2.3.2  Mipmap Filtering](https://www.3dgep.com/texturing-lighting-directx-11/#Mipmap_Filtering)
-        -   [2.3.3  Address Mode](https://www.3dgep.com/texturing-lighting-directx-11/#Address_Mode)
-            -   [2.3.3.1  Wrap](https://www.3dgep.com/texturing-lighting-directx-11/#Wrap)
-            -   [2.3.3.2  Mirror](https://www.3dgep.com/texturing-lighting-directx-11/#Mirror)
-            -   [2.3.3.3  Clamp](https://www.3dgep.com/texturing-lighting-directx-11/#Clamp)
-            -   [2.3.3.4  Border](https://www.3dgep.com/texturing-lighting-directx-11/#Border)
-            -   [2.3.3.5  Mirror Once](https://www.3dgep.com/texturing-lighting-directx-11/#Mirror_Once)
-            -   [2.3.3.6  Enumeration Constants](https://www.3dgep.com/texturing-lighting-directx-11/#Enumeration_Constants)
-        -   [2.3.4  Mipmap LOD Levels](https://www.3dgep.com/texturing-lighting-directx-11/#Mipmap_LOD_Levels)
-        -   [2.3.5  Border Color](https://www.3dgep.com/texturing-lighting-directx-11/#Border_Color)
--   [3  Свойства материалов](https://www.3dgep.com/texturing-lighting-directx-11/#Materials_Properties)
--   [4  Свойства источников света](https://www.3dgep.com/texturing-lighting-directx-11/#Light_Properties)
--   [5  Освещение](https://www.3dgep.com/texturing-lighting-directx-11/#Lighting)
-    -   [5.1  Emissive](https://www.3dgep.com/texturing-lighting-directx-11/#Emissive)
-    -   [5.2  Ambient](https://www.3dgep.com/texturing-lighting-directx-11/#Ambient)
-    -   [5.3  Diffuse](https://www.3dgep.com/texturing-lighting-directx-11/#Diffuse)
-    -   [5.4  Specular](https://www.3dgep.com/texturing-lighting-directx-11/#Specular)
+-   [1  Введение](#title)
+-   [2  Текстурирование](#title)
+    -   [2.1  Текстурные координаты](#title)
+    -   [2.2  Mip Mapping](#title)
+    -   [2.3  Texture Sampler](#title)
+        -   [2.3.1  Filter](#title)
+        -   [2.3.2  Mipmap Filtering](#title)
+        -   [2.3.3  Address Mode](#title)
+            -   [2.3.3.1  Wrap](#title)
+            -   [2.3.3.2  Mirror](#title)
+            -   [2.3.3.3  Clamp](#title)
+            -   [2.3.3.4  Border](#title)
+            -   [2.3.3.5  Mirror Once](#title)
+            -   [2.3.3.6  Enumeration Constants](#title)
+        -   [2.3.4  Mipmap LOD Levels](#title)
+        -   [2.3.5  Border Color](#title)
+-   [3  Свойства материалов](#title)
+-   [4  Свойства источников света](#title)
+-   [5  Освещение](#title)
+    -   [5.1  Emissive](#title)
+    -   [5.2  Ambient](#title)
+    -   [5.3  Diffuse](#title)
+    -   [5.4  Specular](#title)
 -   [6  Specular Intensity](https://www.3dgep.com/texturing-lighting-directx-11/#Specular_Intensity)
 -   [7  Spotlights](https://www.3dgep.com/texturing-lighting-directx-11/#Spotlights)
 -   [8  Attenuation](https://www.3dgep.com/texturing-lighting-directx-11/#Attenuation)
@@ -4342,5 +4342,6 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg3MTUyMzM3MCwtMTY4MDI1NDcxMF19
+eyJoaXN0b3J5IjpbLTU1NzY3MjMzOSwtODcxNTIzMzcwLC0xNj
+gwMjU0NzEwXX0=
 -->
