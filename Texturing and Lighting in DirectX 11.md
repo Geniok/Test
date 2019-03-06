@@ -401,13 +401,13 @@ If:
 -   mathbf{P}  is the point in 3D space that we want to shade,
 -   mathbf{N}  is the surface normal at point we want to shade,
 -   mathbf{L}_p  is the position of the light in 3D space,
--   mathbf{L}_d)  is the diffuse contribution of the light source,
--   mathbf{L})  is the normalized direction vector from the point we want to shade to the light source,
--   k_d)  is the diffuse component of the material,
+-   mathbf{L}_d  is the diffuse contribution of the light source,
+-   mathbf{L}  is the normalized direction vector from the point we want to shade to the light source,
+-   k_d  is the diffuse component of the material,
 
 Then
 
-![](https://www.3dgep.com/texturing-lighting-directx-11/?\begin{array}{rcl}\mathbf{L}&=&\text{normalize}(\mathbf{L}_p-\mathbf{P})\\diffuse&=&\max(0,\mathbf{L}\cdot\mathbf{N})*\mathbf{L}_d*k_d\end{array})
+begin{array}{rcl}\mathbf{L}&=&\text{normalize}(\mathbf{L}_p-\mathbf{P})\\diffuse&=&\max(0,\mathbf{L}\cdot\mathbf{N})*\mathbf{L}_d*k_d\end{array})
 
 The image below shows the scene rendered with only diffuse lighting.
 
@@ -4300,6 +4300,5 @@ If you run the demo, you should see something similar to what is shown in the vi
 
 This entry was posted in  [DirectX](https://www.3dgep.com/category/graphics-programming/directx/),  [Graphics Programming](https://www.3dgep.com/category/graphics-programming/)  and tagged  [Address Mode](https://www.3dgep.com/tag/address-mode/),  [ambient](https://www.3dgep.com/tag/ambient/),  [Attenuation](https://www.3dgep.com/tag/attenuation/),  [Border](https://www.3dgep.com/tag/border/),  [Clamp](https://www.3dgep.com/tag/clamp/),  [Constant Buffers](https://www.3dgep.com/tag/constant-buffers/),  [diffuse](https://www.3dgep.com/tag/diffuse/),  [Direct3D](https://www.3dgep.com/tag/direct3d/),  [Directional Light](https://www.3dgep.com/tag/directional-light/),  [DirectX 11](https://www.3dgep.com/tag/directx-11/),  [DirectX Math](https://www.3dgep.com/tag/directx-math/),  [Emissive](https://www.3dgep.com/tag/emissive/),  [Filter](https://www.3dgep.com/tag/filter/),  [Instance](https://www.3dgep.com/tag/instance/),  [lighting](https://www.3dgep.com/tag/lighting/),  [matrix](https://www.3dgep.com/tag/matrix/),  [Mip Mapping](https://www.3dgep.com/tag/mip-mapping/),  [Mirror](https://www.3dgep.com/tag/mirror/),  [Mirror Once](https://www.3dgep.com/tag/mirror-once/),  [Packing](https://www.3dgep.com/tag/packing/),  [Pixel Shader](https://www.3dgep.com/tag/pixel-shader/),  [Point Light](https://www.3dgep.com/tag/point-light/),  [rendering](https://www.3dgep.com/tag/rendering/),  [sampler](https://www.3dgep.com/tag/sampler/),  [Shaders](https://www.3dgep.com/tag/shaders/),  [Source](https://www.3dgep.com/tag/source/),  [specular](https://www.3dgep.com/tag/specular/),  [Specular Power](https://www.3dgep.com/tag/specular-power/),  [Spot Light](https://www.3dgep.com/tag/spot-light/),  [texture](https://www.3dgep.com/tag/texture/),  [Texturing](https://www.3dgep.com/tag/texturing/),  [tutorial](https://www.3dgep.com/tag/tutorial/),  [vector](https://www.3dgep.com/tag/vector/),  [Vertex Shader](https://www.3dgep.com/tag/vertex-shader/),  [Wrap](https://www.3dgep.com/tag/wrap/)  by  [Jeremiah](https://www.3dgep.com/author/jeremiah/). Bookmark the  [permalink](https://www.3dgep.com/texturing-lighting-directx-11/ "Permalink to Texturing and Lighting in DirectX 11").
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0ODEzNDQ3NSwtMjA1MjI0MjkwMiwxOD
-YyMzk0MDcxLDE2NzMzOTQ1NTVdfQ==
+eyJoaXN0b3J5IjpbNjU3Mjg0MjA2XX0=
 -->
